@@ -1,11 +1,13 @@
 import random
 import pandas as pd
-from allBooks import Books, ancestry_picker
-from human_Ancestry import HumanHero
 
+from AllBooks import *
+from AllAncestries import *
+from FinalCharacter import *
 
-human_hero_instance = HumanHero()
-ancestry_instance = Books()
+ancestries_instance = AllAncestries()
+ancestry_instance = AllBooks()
+hero = FinalCharacter()
 
 
 def book_pick():
@@ -17,11 +19,12 @@ def book_pick():
     return book_choice
 
 
+hero.book = book_pick()
+hero.ancestry = AllBooks.ancestry_pick(hero.book)
+chosen_ancestry = AllAncestries.ancestry_investigator(hero.ancestry)
+
 class CharacterCreationQuestions:
-    book_choice = book_pick()
-    ancestry_picker(book_choice)
-
-
+    pass
 
     # human_hero_instance.personality_picker()
     #
