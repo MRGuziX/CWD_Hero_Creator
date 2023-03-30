@@ -19,9 +19,22 @@ class AllBooks:
                   "4.Losowe")
         else:
             print("Błąd")
-        ancestry_choice = input()
+        ancestry_choice = input().lower()
 
-        if ancestry_choice == "1":
-            return "człowiek"
+        match ancestry_choice:
+            case  "1":
+                return "człowiek"
+            case  "2":
+                return "Automaton"
+            case  "3":
+                return "Goblin"
+            case  "4":
+                return "Krasnolud"
+            case  "5":
+                return "Odmieniec"
+            case  "6":
+                return "Ork"
+            case  "7":
+                return "Losowe"
         return ancestry_choice
 
