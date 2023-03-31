@@ -2,6 +2,7 @@ import pandas as pd
 
 from DiceRoller import dice_roller, DiceRoller
 from FinalCharacter import FinalCharacter
+from UpgradeMechanics import UpgradeMechanics
 
 dice_roller_instance = DiceRoller()
 final_character = FinalCharacter()
@@ -37,25 +38,45 @@ class AllAncestries:
         data = pd.read_excel(f'dataBase\{database_name}.xlsx', f'{database_name}')
         df = pd.DataFrame(data, columns=['attribute', 'value'])
 
-        final_character.strength = df.iloc[1, 1]
-        final_character.dexterity = df.iloc[2, 1]
-        final_character.intelligence = df.iloc[3, 1]
-        final_character.will = df.iloc[4, 1]
-        final_character.perception = df.iloc[3, 1]
-        final_character.health = df.iloc[1, 1]
-        final_character.speed = df.iloc[7, 1]
-        final_character.defence = df.iloc[8, 1]
-        final_character.healing_rate = df.iloc[9, 1]
-        final_character.power = df.iloc[10, 1]
-        final_character.insanity = df.iloc[11, 1]
-        final_character.corruption = df.iloc[12, 1]
-        final_character.damage = df.iloc[13, 1]
-        final_character.languages_verbal = [df.iloc[14, 1]]
-        final_character.languages_written = [df.iloc[15, 1]]
-        final_character.character_size = None
+        # Pobranie statystyk  i przypisanie do zmiennych
+        strength = df.iloc[1, 1]
+        dexterity = df.iloc[2, 1]
+        intelligence = df.iloc[3, 1]
+        will = df.iloc[4, 1]
+        perception = intelligence
+        health = strength
+        speed = df.iloc[7, 1]
+        defence = df.iloc[8, 1]
+        healing_rate = df.iloc[9, 1]
+        power = df.iloc[10, 1]
+        insanity = df.iloc[11, 1]
+        corruption = df.iloc[12, 1]
+        damage = df.iloc[13, 1]
+        languages_verbal = [df.iloc[14, 1]]
+        languages_written = [df.iloc[15, 1]]
+        character_size = None
 
-        print('Statystyki:\n\n')
-        print(final_character.name)
+        UpgradeMechanics.statistic_increment()
+
+        # przekazanie statystyk do obiektu bohatera
+        final_character.strength = strength
+        final_character.dexterity = dexterity
+        final_character.intelligence = intelligence
+        final_character.will = will
+        final_character.perception = perception
+        final_character.health = health
+        final_character.speed = speed
+        final_character.defence = defence
+        final_character.healing_rate = healing_rate
+        final_character.power = power
+        final_character.insanity = insanity
+        final_character.corruption = corruption
+        final_character.damage = damage
+        final_character.languages_verbal = languages_verbal
+        final_character.languages_written = languages_written
+        final_character.character_size = character_size
+
+
 
     def personality_picker(self):
         dice_result = dice_roller(3, 6)

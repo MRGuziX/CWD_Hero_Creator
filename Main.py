@@ -4,10 +4,12 @@ import pandas as pd
 from AllBooks import *
 from AllAncestries import *
 from FinalCharacter import *
+from UpgradeMechanics import UpgradeMechanics
 
 ancestries_instance = AllAncestries()
 ancestry_instance = AllBooks()
 hero = FinalCharacter()
+mechanics = UpgradeMechanics()
 
 
 def book_pick():
@@ -23,17 +25,28 @@ hero.book = book_pick()
 hero.ancestry = AllBooks.ancestry_pick(hero.book)
 chosen_ancestry = AllAncestries.ancestry_investigator(hero.ancestry)
 
+
 def increase_attr():
+    choice = input("Wybierz numer statystyki do podniesienia o 1\n\n""1.Siła\n"
+                   "2.Zręczność\n"
+                   "3.Inteligencja\n"
+                   "4.Wola\n").lower()
 
-    print("Wybierz jeden z atrybutów i podnieś go o 1:\n\n"
-          "1.Siła\n"
-          "2.Zręczność\n"
-          "3.Inteligencja\n"
-          "4.Wola")
+    match choice:
+        case "1":
+            "Siła"
+        case "2":
+            "Zręczność"
+        case "3":
+            "Inteligencja"
+        case "4":
+            "Wola"
+        case _:
+            "Błąd"
+    return mechanics.statistic_increment(choice)
 
-    choice = input()
-    statistic_to_increase = FinalCharacter(choice)
-    FinalCharacter.statistic_increment(statistic_to_increase)
+
+increase_attr()
 
 
 class CharacterCreationQuestions:
