@@ -1,64 +1,68 @@
-import random
-import pandas as pd
-
-from AllBooks import *
-from AllAncestries import *
-from FinalCharacter import *
+from AllAncestries import AllAncestries
+from AllBooks import AllBooks
+from Builder_CWD_Hero import *
 from UpgradeMechanics import UpgradeMechanics
 
-ancestries_instance = AllAncestries()
-ancestry_instance = AllBooks()
-hero = FinalCharacter()
-mechanics = UpgradeMechanics()
+hero = HeroBuilder()
+book_instance = AllBooks()
+ancestry_instance = AllAncestries()
+mechanic_instance = UpgradeMechanics()
 
+print(hero.name)
+name = input("Podaj imię bohatera:")
+hero.add_name(name)
+book_choice = book_instance.book_pick()
+hero.add_book(book_choice)
+ancestry_choice = book_instance.ancestry_pick(book_choice)
+hero.add_ancestry(ancestry_choice)
+ancestry_instance.database_picker(ancestry_choice)
 
-def book_pick():
-    print("Z jakich książek chcesz skorzystać?\n\n"
-          "Wybierz numer pozycji:\n"
-          "1.Cień Władcy Demonów - Podręcznik Główny\n"
-          "2.Straszliwe Piękno (N/A)\n")
-    book_choice = input().lower()
-    return book_choice
+print("Siła Bohatera przed inkr: ", hero.strength)
 
+if ancestry_choice == "Człowiek":
+    mechanic_instance.statistic_increment()
 
-hero.book = book_pick()
-hero.ancestry = AllBooks.ancestry_pick(hero.book)
-chosen_ancestry = AllAncestries.ancestry_investigator(hero.ancestry)
-
-
-def increase_attr():
-    choice = input("Wybierz numer statystyki do podniesienia o 1\n\n""1.Siła\n"
-                   "2.Zręczność\n"
-                   "3.Inteligencja\n"
-                   "4.Wola\n").lower()
-
-    match choice:
-        case "1":
-            "Siła"
-        case "2":
-            "Zręczność"
-        case "3":
-            "Inteligencja"
-        case "4":
-            "Wola"
-        case _:
-            "Błąd"
-    return mechanics.statistic_increment(choice)
-
-
-increase_attr()
-
-
-class CharacterCreationQuestions:
-    pass
-
-    #
-    # print("Wybierz swój rozmiar:\n\n"
-    #       "1. 'Jeden' (1)\n"
-    #       "2. 'Pół' (1/2)")
-    # picked_size = input()
-    # FinalCharacter.size_increment(picked_size)
-
+print("Siła Bohatera po inkr: ", hero.strength)
+#
+#
+# hero.book = book_pick()
+# hero.ancestry = AllBooks.ancestry_pick(hero.book)
+# chosen_ancestry = AllAncestries.ancestry_investigator(hero.ancestry)
+#
+#
+# def increase_attr():
+#     choice = input("Wybierz numer statystyki do podniesienia o 1\n\n""1.Siła\n"
+#                    "2.Zręczność\n"
+#                    "3.Inteligencja\n"
+#                    "4.Wola\n").lower()
+#
+#     match choice:
+#         case "1":
+#             "Siła"
+#         case "2":
+#             "Zręczność"
+#         case "3":
+#             "Inteligencja"
+#         case "4":
+#             "Wola"
+#         case _:
+#             "Błąd"
+#     return mechanics.statistic_increment(choice)
+#
+#
+# increase_attr()
+#
+#
+# class CharacterCreationQuestions:
+#     pass
+#
+#
+#     print("Wybierz swój rozmiar:\n\n"
+#           "1. 'Jeden' (1)\n"
+#           "2. 'Pół' (1/2)")
+#     picked_size = input()
+#     FinalCharacter.size_increment(picked_size)
+#
 #
 # def backstory_picker():
 #     data = pd.read_excel('dataBase\humanAncestry.xlsx', 'Przeszłość')
