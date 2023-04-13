@@ -1,82 +1,51 @@
 import pandas as pd
 
-from Builder_CWD_Hero import HeroBuilder
 from DiceRoller import dice_roller, DiceRoller
 
 dice_roller_instance = DiceRoller()
-hero = HeroBuilder()
 
 
 class AllAncestries:
-    @staticmethod
-    def database_picker(ancestry_choice):
 
-        match ancestry_choice:
+    @staticmethod
+    def attribute_picker(hero):
+
+        match hero.ancestry:
             case "Człowiek":
                 database_name = "humanAncestry"
-                return AllAncestries.attribute_picker(database_name)
-            case "automaton":
+            case "Automaton":
                 database_name = "automatonAncestry"
-                return AllAncestries.attribute_picker(database_name)
             case "Goblin":
                 database_name = "goblinAncestry"
-                return AllAncestries.attribute_picker(database_name)
             case "Krasnolud":
                 database_name = "krasnoludAncestry"
-                return AllAncestries.attribute_picker(database_name)
             case "Odmieniec":
                 database_name = "odmieniecAncestry"
-                return AllAncestries.attribute_picker(database_name)
             case "Ork":
                 database_name = "orkAncestry"
-                return AllAncestries.attribute_picker(database_name)
-
-    @staticmethod
-    def attribute_picker(database_name):
+            case _:
+                return "Błąd"
 
         data = pd.read_excel(f'dataBase\{database_name}.xlsx', f'{database_name}')
         df = pd.DataFrame(data, columns=['attribute', 'value'])
 
-        strength = df.iloc[1, 1]
-        dexterity = df.iloc[2, 1]
-        intelligence = df.iloc[3, 1]
-        will = df.iloc[4, 1]
-        perception = intelligence
-        health = strength
-        speed = df.iloc[7, 1]
-        defence = df.iloc[8, 1]
-        healing_rate = df.iloc[9, 1]
-        power = df.iloc[10, 1]
-        insanity = df.iloc[11, 1]
-        corruption = df.iloc[12, 1]
-        damage = df.iloc[13, 1]
-        languages_verbal = [df.iloc[14, 1]]
-        languages_written = [df.iloc[15, 1]]
-        character_size = None
-
-        print("Siła Z bazy przypisana do zmiennej")
-        print(strength)
-
-        hero.strength = strength
-
-        print("Siła przypisana do pola str obiektu hero")
-        print(hero.strength)
-
-        hero.dexterity = dexterity
-        hero.intelligence = intelligence
-        hero.will = will
-        hero.perception = perception
-        hero.health = health
-        hero.speed = speed
-        hero.defence = defence
-        hero.healing_rate = healing_rate
-        hero.power = power
-        hero.insanity = insanity
-        hero.corruption = corruption
-        hero.damage = damage
-        hero.languages_verbal = languages_verbal
-        hero.languages_written = languages_written
-        hero.character_size = character_size
+        hero.strength = int(df.iloc[1, 1])
+        hero.dexterity = df.iloc[2, 1]
+        hero.intelligence = df.iloc[3, 1]
+        hero.will = df.iloc[4, 1]
+        hero.perception = hero.intelligence
+        hero.health = hero.strength
+        hero.speed = df.iloc[7, 1]
+        hero.defence = df.iloc[8, 1]
+        hero.healing_rate = df.iloc[9, 1]
+        hero.power = df.iloc[10, 1]
+        hero.insanity = df.iloc[11, 1]
+        hero.corruption = df.iloc[12, 1]
+        hero.damage = df.iloc[13, 1]
+        hero.languages_verbal = [df.iloc[14, 1]]
+        hero.languages_written = [df.iloc[15, 1]]
+        hero.character_size = None
+        return hero
 
     def personality_picker(self):
         dice_result = dice_roller(3, 6)

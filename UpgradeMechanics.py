@@ -1,11 +1,6 @@
-from Builder_CWD_Hero import HeroBuilder
-
-hero = HeroBuilder()
-
-
 class UpgradeMechanics:
     @staticmethod
-    def statistic_increment():
+    def statistic_increment(hero):
         print("Jaki atrybut chcesz podnieść o 1?")
         statistic_to_increase = input("1. Siła\n"
                                       "2. Zręczność\n"
@@ -26,10 +21,16 @@ class UpgradeMechanics:
                 hero.will += 1
             case _:
                 "Błąd"
+        return hero
 
     @staticmethod
-    def size_increment( picked_size):
-        if picked_size == "1":
+    def size_increment(hero):
+        print("Jaki rozmiar chce wybrać?")
+        size = input("1. Rozmiar: 1\n"
+                     "2. Rozmiar: 1/2\n")
+
+        if size == "1":
             hero.character_size = "1"
         else:
             hero.character_size = "0.5"
+        return hero

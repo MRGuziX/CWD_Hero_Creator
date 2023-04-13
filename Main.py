@@ -3,26 +3,24 @@ from AllBooks import AllBooks
 from Builder_CWD_Hero import *
 from UpgradeMechanics import UpgradeMechanics
 
-hero = HeroBuilder()
+hero = Characters()
 book_instance = AllBooks()
 ancestry_instance = AllAncestries()
 mechanic_instance = UpgradeMechanics()
 
-print(hero.name)
-name = input("Podaj imię bohatera:")
-hero.add_name(name)
-book_choice = book_instance.book_pick()
-hero.add_book(book_choice)
-ancestry_choice = book_instance.ancestry_pick(book_choice)
-hero.add_ancestry(ancestry_choice)
-ancestry_instance.database_picker(ancestry_choice)
 
-print("Siła Bohatera przed inkr: ", hero.strength)
+name = input("Podaj imię bohatera:")
+hero.name = name
+book_choice = book_instance.book_pick()
+hero.book = book_choice
+ancestry_choice = book_instance.ancestry_pick(book_choice)
+hero.ancestry = ancestry_choice
+hero = ancestry_instance.attribute_picker(hero)
 
 if ancestry_choice == "Człowiek":
-    mechanic_instance.statistic_increment()
+    hero = mechanic_instance.statistic_increment(hero)
+    hero = mechanic_instance.size_increment(hero)
 
-print("Siła Bohatera po inkr: ", hero.strength)
 #
 #
 # hero.book = book_pick()
