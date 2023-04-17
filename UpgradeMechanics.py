@@ -1,6 +1,6 @@
 class UpgradeMechanics:
     @staticmethod
-    def statistic_increment(hero):
+    def add_attribute_points(hero):
         print("Jaki atrybut chcesz podnieść o 1?")
         statistic_to_increase = input("1. Siła\n"
                                       "2. Zręczność\n"
@@ -24,7 +24,7 @@ class UpgradeMechanics:
         return hero
 
     @staticmethod
-    def size_increment(hero):
+    def add_size(hero):
         print("Jaki rozmiar chce wybrać?")
         size = input("1. Rozmiar: 1\n"
                      "2. Rozmiar: 1/2\n")
@@ -34,3 +34,19 @@ class UpgradeMechanics:
         else:
             hero.character_size = "0.5"
         return hero
+
+    @staticmethod
+    def add_magic_school(hero):
+        pass
+
+    @staticmethod
+    def add_spell(hero):
+        pass
+
+    @staticmethod
+    def add_profession(hero):
+        pass
+
+    @staticmethod
+    def add_language(hero):
+        pass

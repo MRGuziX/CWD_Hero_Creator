@@ -1,6 +1,6 @@
 import pandas as pd
 
-from DiceRoller import dice_roller, DiceRoller
+from DiceRoller import DiceRoller
 
 dice_roller_instance = DiceRoller()
 
@@ -47,28 +47,3 @@ class AllAncestries:
         hero.character_size = None
         return hero
 
-    def personality_picker(self):
-        dice_result = dice_roller(3, 6)
-        print(dice_result)
-        data = pd.read_excel('dataBase\humanAncestry.xlsx', 'Osobowość')
-        df = pd.DataFrame(data, columns=['result', 'value'])
-
-        match dice_result:
-            case 3:
-                return df.iloc[0, 1]
-            case 4:
-                return df.iloc[1, 1]
-            case 5, 6:
-                return df.iloc[2, 1]
-            case 7, 8:
-                return df.iloc[3, 1]
-            case 9, 10, 11, 12:
-                return df.iloc[4, 1]
-            case 13, 14:
-                return df.iloc[5, 1]
-            case 15, 16:
-                return df.iloc[6, 1]
-            case 17:
-                return df.iloc[7, 1]
-            case 18:
-                return df.iloc[8, 1]

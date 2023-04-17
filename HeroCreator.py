@@ -25,9 +25,11 @@ class Characters:
         self.languages_written = None
         self.character_size = None
 
-        self.description = None
-        self.religion = None
-        self.professions = None
+        self.backstory = None
+        self.age = None
+        self.character = None
+        self.body = None
+        self.appearance = None
         self.quirks = None
 
         self.equipment = None
