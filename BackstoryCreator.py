@@ -6,9 +6,9 @@ import pandas as pd
 
 def backstory_picker(hero, database_name):
     data = pd.read_excel(f'dataBase\{database_name}.xlsx', 'Przeszłość')
-    df = pd.DataFrame(data, columns=['result', 'value'])
+    df = pd.DataFrame(data, columns=['value', 'result'])
     dice_roll = random.randint(1, 20)
-    hero.backstory = (df.iloc[dice_roll, 1])
+    hero.backstory = (df.iloc[dice_roll, 0])
 
 
 def age_picker(hero, database_name):
@@ -36,23 +36,23 @@ def character_picker(hero, database_name):
 
     match dice_roller(3, 6):
         case 3:
-            hero.character = (df.iloc[0, 1])
+            hero.character = (df.iloc[0, 0])
         case 4:
-            hero.character = (df.iloc[1, 1])
+            hero.character = (df.iloc[1, 0])
         case 5 | 6:
-            hero.character = (df.iloc[2, 1])
+            hero.character = (df.iloc[2, 0])
         case 7 | 8:
-            hero.character = (df.iloc[3, 1])
+            hero.character = (df.iloc[3, 0])
         case 9 | 10 | 11 | 12:
-            hero.character = (df.iloc[4, 1])
+            hero.character = (df.iloc[4, 0])
         case 13 | 14:
-            hero.character = (df.iloc[5, 1])
+            hero.character = (df.iloc[5, 0])
         case 15 | 16:
-            hero.character = (df.iloc[6, 1])
+            hero.character = (df.iloc[6, 0])
         case 17:
-            hero.character = (df.iloc[7, 1])
+            hero.character = (df.iloc[7, 0])
         case _:
-            hero.character = (df.iloc[8, 1])
+            hero.character = (df.iloc[8, 0])
 
 
 def religion_picker(hero, database_name):
@@ -137,6 +137,7 @@ class BackstoryCreator:
                 age_picker(hero, database_name)
                 body_picker(hero, database_name)
                 appearance_picker(hero, database_name)
+                return hero
 
             case "Automaton":
                 database_name = "automatonAncestry"

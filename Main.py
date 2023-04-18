@@ -2,6 +2,7 @@ from AllAncestries import AllAncestries
 from AllBooks import AllBooks
 from BackstoryCreator import BackstoryCreator
 from HeroCreator import *
+from PDFCreator import PDFCreator
 from UpgradeMechanics import UpgradeMechanics
 
 hero = Characters()
@@ -9,6 +10,7 @@ book_instance = AllBooks()
 ancestry_instance = AllAncestries()
 mechanic_instance = UpgradeMechanics()
 backstory_instance = BackstoryCreator()
+pdf_creator_instance = PDFCreator()
 
 name = input("Podaj imię bohatera:")
 hero.name = name
@@ -25,15 +27,7 @@ if ancestry_choice == "Człowiek":
 
     hero = mechanic_instance.add_attribute_points(hero)
     hero = mechanic_instance.add_size(hero)
-
-    print("siła:", hero.strength)
-    print("HP:", hero.health)
-    print("Przeszłość:", hero.backstory)
-    print("Wiek:", hero.age)
-    print("Osobowość:", hero.character)
-    print("Budowa Ciała:", hero.body)
-    print("Wygląd:", hero.appearance)
-    print("Rozmiar:", hero.character_size)
+    hero = pdf_creator_instance.pdf_creator(hero)
 
 """Po backstory wybieramy sobie profesje czy 2 profesje czy jedna profesja i język.
 musimy pokazać graczowi jakie języki już zna. Zwrócić listę języków"""
