@@ -4,8 +4,6 @@ on: push
 
 jobs:
   super-lint:
-    context: Super-Linter-Options
-    version: v3.17.0
     runs-on: ubuntu-latest
     steps:
       - name: Chceckout code
