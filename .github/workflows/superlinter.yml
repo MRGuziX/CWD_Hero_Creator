@@ -1,0 +1,10 @@
+name: First_Work_Flow_File
+
+on: push
+
+jobs:
+  super-lint:
+    runs-on: windows
+    steps:
+      - name: Chceckout code
+        uses: actions/checkout@v2
