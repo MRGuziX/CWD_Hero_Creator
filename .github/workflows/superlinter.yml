@@ -4,13 +4,15 @@ on: push
 
 jobs:
   super-lint:
+    context: Super-Linter-Options
+    version: v3.17.0
     runs-on: ubuntu-latest
     steps:
       - name: Chceckout code
         uses: actions/checkout@v2
         
       - name: Run Super-Linter
-        uses: github/super-linter@v3
+        uses: github/super-linter@v3.17.0
         env:
           DEFAULT_BRANCH: Master
           GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
