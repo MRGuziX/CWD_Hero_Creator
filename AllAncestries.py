@@ -29,7 +29,7 @@ class AllAncestries:
         data = pd.read_excel(f'dataBase\{database_name}.xlsx', f'{database_name}')
         df = pd.DataFrame(data, columns=['attribute', 'value'])
 
-        hero.strength = int(df.iloc[1, 1])
+        hero.strength = (df.iloc[1, 1])
         hero.dexterity = df.iloc[2, 1]
         hero.intelligence = df.iloc[3, 1]
         hero.will = df.iloc[4, 1]

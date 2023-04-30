@@ -49,4 +49,5 @@ class UpgradeMechanics:
 
     @staticmethod
     def add_language(hero):
-        pass
+        hero.languages_verbal.append(input("Jaki język chcesz dodać?"))
+        return hero
