@@ -21,8 +21,8 @@ class Characters:
         self.insanity = None
         self.corruption = None
         self.damage = None
-        self.languages_verbal = None
-        self.languages_written = None
+        self.languages_verbal = []
+        self.languages_written = []
         self.character_size = None
 
         self.backstory = None

@@ -22,15 +22,31 @@ hero = ancestry_instance.attribute_picker(hero)
 
 """Sprawdzenie tego jakiego pochodzenia jest postać i na tej
  podstawie wybranie dodatkowych upgrejdów oraz backstory"""
-if ancestry_choice == "Człowiek":
-    hero = backstory_instance.database_picker(hero)
 
-    hero = mechanic_instance.add_attribute_points(hero)
-    hero = mechanic_instance.add_size(hero)
-    hero = pdf_creator_instance.pdf_creator(hero)
+match ancestry_choice:
+    case "Człowiek":
+        hero = backstory_instance.database_picker(hero)
+        hero = mechanic_instance.add_attribute_points(hero)
+        hero = mechanic_instance.add_size(hero)
+        hero = pdf_creator_instance.pdf_creator(hero)
+    case "Automaton":
+        hero = backstory_instance.database_picker(hero)
+        hero = mechanic_instance.add_language(hero)
+    case "Goblin":
+        hero = backstory_instance.database_picker(hero)
 
-"""Po backstory wybieramy sobie profesje czy 2 profesje czy jedna profesja i język.
-musimy pokazać graczowi jakie języki już zna. Zwrócić listę języków"""
+    # case "Krasnolud":
+    #
+    # case "Odmieniec":
+    #
+    # case "Ork":
+
+# """Po backstory wybieramy sobie profesje czy 2 profesje czy jedna profesja i język.
+# musimy pokazać graczowi jakie języki już zna. Zwrócić listę języków"""
+
+#dodanie do wyborów z backstory modyfikacji equ i statów i języków
+#
+
 # def profession_picker(languages_verbal, languages_written):
 #     dice_roller(3, 6)
 #     # wybierz diwe profesje lub zrezygnuj z jednej w zamian za mówienie w jednym nowym jezyku, lub czytanie i pisanie w tym który juz znasz
