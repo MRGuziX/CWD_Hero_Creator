@@ -240,6 +240,367 @@ def automaton_form_picker(hero, database_name):
             hero.body = (df.iloc[8, 1])
 
 
+def goblin_backstory_picker(hero, database_name):
+    data = pd.read_excel(f'dataBase\{database_name}.xlsx', 'Przeszłość')
+    df = pd.DataFrame(data, columns=['value', 'result'])
+    dice_roll = random.randint(1, 20)
+    hero.backstory = (df.iloc[dice_roll, 1])
+
+
+def goblin_character_picker(hero, database_name):
+    data = pd.read_excel(f'dataBase\{database_name}.xlsx', 'Forma')
+    df = pd.DataFrame(data, columns=['value', 'result'])
+
+    match dice_roller(3, 6):
+        case 3:
+            hero.body = (df.iloc[0, 1])
+        case 4:
+            hero.body = (df.iloc[1, 1])
+        case 5 | 6:
+            hero.body = (df.iloc[2, 1])
+        case 7 | 8:
+            hero.body = (df.iloc[3, 1])
+        case 9 | 10 | 11 | 12:
+            hero.body = (df.iloc[4, 1])
+        case 13 | 14:
+            hero.body = (df.iloc[5, 1])
+        case 15 | 16:
+            hero.body = (df.iloc[6, 1])
+        case 17:
+            hero.body = (df.iloc[7, 1])
+        case 18:
+            hero.body = (df.iloc[8, 1])
+
+
+def goblin_special_feature_picker(hero, database_name):
+    data = pd.read_excel(f'dataBase\{database_name}.xlsx', 'Przeszłość')
+    df = pd.DataFrame(data, columns=['value', 'result'])
+    dice_roll = random.randint(1, 20)
+    hero.backstory = (df.iloc[dice_roll, 1])
+
+
+def goblin_age_picker(hero, database_name):
+    data = pd.read_excel(f'dataBase\{database_name}.xlsx', 'Wiek')
+    df = pd.DataFrame(data, columns=['value', 'result'])
+
+    match dice_roller(3, 6):
+        case 3 | 4 | 5 | 6 | 7 | 8:
+            hero.age = (df.iloc[0, 1])
+        case 9 | 10 | 11 | 12:
+            hero.age = (df.iloc[1, 1])
+        case 13 | 14 | 15:
+            hero.age = (df.iloc[2, 1])
+        case 16 | 17:
+            hero.age = (df.iloc[3, 1])
+        case 18:
+            hero.age = (df.iloc[4, 1])
+
+
+def goblin_body_picker(hero, database_name):
+    data = pd.read_excel(f'dataBase\{database_name}.xlsx', 'Budowa Ciała')
+    df = pd.DataFrame(data, columns=['value', 'result'])
+
+    match dice_roller(3, 6):
+        case 3:
+            hero.body = (df.iloc[0, 1])
+        case 4:
+            hero.body = (df.iloc[1, 1])
+        case 5 | 6:
+            hero.body = (df.iloc[2, 1])
+        case 7 | 8:
+            hero.body = (df.iloc[3, 1])
+        case 9 | 10 | 11 | 12:
+            hero.body = (df.iloc[4, 1])
+        case 13 | 14:
+            hero.body = (df.iloc[5, 1])
+        case 15 | 16:
+            hero.body = (df.iloc[6, 1])
+        case 17:
+            hero.body = (df.iloc[7, 1])
+        case _:
+            hero.body = (df.iloc[8, 1])
+
+
+def goblin_strange_habit_picker(hero, database_name):
+    data = pd.read_excel(f'dataBase\{database_name}.xlsx', 'Przeszłość')
+    df = pd.DataFrame(data, columns=['value', 'result'])
+    dice_roll = random.randint(1, 20)
+    hero.backstory = (df.iloc[dice_roll, 1])
+
+
+def dwarf_backstory_picker(hero, database_name):
+    data = pd.read_excel(f'dataBase\{database_name}.xlsx', 'Przeszłość')
+    df = pd.DataFrame(data, columns=['value', 'result'])
+    dice_roll = random.randint(1, 20)
+    hero.backstory = (df.iloc[dice_roll, 1])
+
+
+def dwarf_character_picker(hero, database_name):
+    data = pd.read_excel(f'dataBase\{database_name}.xlsx', 'Forma')
+    df = pd.DataFrame(data, columns=['value', 'result'])
+
+    match dice_roller(3, 6):
+        case 3:
+            hero.body = (df.iloc[0, 1])
+        case 4:
+            hero.body = (df.iloc[1, 1])
+        case 5 | 6:
+            hero.body = (df.iloc[2, 1])
+        case 7 | 8:
+            hero.body = (df.iloc[3, 1])
+        case 9 | 10 | 11 | 12:
+            hero.body = (df.iloc[4, 1])
+        case 13 | 14:
+            hero.body = (df.iloc[5, 1])
+        case 15 | 16:
+            hero.body = (df.iloc[6, 1])
+        case 17:
+            hero.body = (df.iloc[7, 1])
+        case 18:
+            hero.body = (df.iloc[8, 1])
+
+
+def dwarf_special_feature_picker(hero, database_name):
+    data = pd.read_excel(f'dataBase\{database_name}.xlsx', 'Przeszłość')
+    df = pd.DataFrame(data, columns=['value', 'result'])
+    dice_roll = random.randint(1, 20)
+    hero.backstory = (df.iloc[dice_roll, 1])
+
+
+def dwarf_age_picker(hero, database_name):
+    data = pd.read_excel(f'dataBase\{database_name}.xlsx', 'Wiek')
+    df = pd.DataFrame(data, columns=['value', 'result'])
+
+    match dice_roller(3, 6):
+        case 3:
+            hero.age = (df.iloc[0, 1])
+        case 4 | 5 | 6 | 7:
+            hero.age = (df.iloc[1, 1])
+        case 8 | 9 | 10 | 11 | 12:
+            hero.age = (df.iloc[2, 1])
+        case 13 | 14 | 15:
+            hero.age = (df.iloc[3, 1])
+        case 16 | 17:
+            hero.age = (df.iloc[4, 1])
+        case 18:
+            hero.age = (df.iloc[5, 1])
+
+
+def dwarf_body_picker(hero, database_name):
+    data = pd.read_excel(f'dataBase\{database_name}.xlsx', 'Budowa Ciała')
+    df = pd.DataFrame(data, columns=['value', 'result'])
+
+    match dice_roller(3, 6):
+        case 3:
+            hero.body = (df.iloc[0, 1])
+        case 4 | 5 | 6:
+            hero.body = (df.iloc[1, 1])
+        case 7 | 8:
+            hero.body = (df.iloc[2, 1])
+        case 9 | 10 | 11 | 12:
+            hero.body = (df.iloc[3, 1])
+        case 13 | 14 | 15:
+            hero.body = (df.iloc[4, 1])
+        case 16 | 17:
+            hero.body = (df.iloc[5, 1])
+        case 18:
+            hero.body = (df.iloc[6, 1])
+
+
+def dwarf_hatred_race_picker(hero, database_name):
+    data = pd.read_excel(f'dataBase\{database_name}.xlsx', 'Budowa Ciała')
+    df = pd.DataFrame(data, columns=['value', 'result'])
+
+    match dice_roller(3, 6):
+        case 3:
+            hero.body = (df.iloc[0, 1])
+        case 4 | 5 | 6:
+            hero.body = (df.iloc[1, 1])
+        case 7 | 8:
+            hero.body = (df.iloc[2, 1])
+        case 9 | 10 | 11 | 12:
+            hero.body = (df.iloc[3, 1])
+        case 13 | 14 | 15:
+            hero.body = (df.iloc[4, 1])
+        case 16 | 17:
+            hero.body = (df.iloc[5, 1])
+        case 18:
+            hero.body = (df.iloc[6, 1])
+
+
+def changeling_backstory_picker(hero, database_name):
+    data = pd.read_excel(f'dataBase\{database_name}.xlsx', 'Przeszłość')
+    df = pd.DataFrame(data, columns=['value', 'result'])
+    dice_roll = random.randint(1, 20)
+    hero.backstory = (df.iloc[dice_roll, 1])
+
+
+def changeling_character_picker(hero, database_name):
+    data = pd.read_excel(f'dataBase\{database_name}.xlsx', 'Forma')
+    df = pd.DataFrame(data, columns=['value', 'result'])
+
+    match dice_roller(3, 6):
+        case 3:
+            hero.body = (df.iloc[0, 1])
+        case 4:
+            hero.body = (df.iloc[1, 1])
+        case 5 | 6:
+            hero.body = (df.iloc[2, 1])
+        case 7 | 8:
+            hero.body = (df.iloc[3, 1])
+        case 9 | 10 | 11 | 12:
+            hero.body = (df.iloc[4, 1])
+        case 13 | 14:
+            hero.body = (df.iloc[5, 1])
+        case 15 | 16:
+            hero.body = (df.iloc[6, 1])
+        case 17:
+            hero.body = (df.iloc[7, 1])
+        case 18:
+            hero.body = (df.iloc[8, 1])
+
+
+def changeling_special_feature_picker(hero, database_name):
+    data = pd.read_excel(f'dataBase\{database_name}.xlsx', 'Przeszłość')
+    df = pd.DataFrame(data, columns=['value', 'result'])
+    dice_roll = random.randint(1, 20)
+    hero.backstory = (df.iloc[dice_roll, 1])
+
+
+def changeling_age_picker(hero, database_name):
+    data = pd.read_excel(f'dataBase\{database_name}.xlsx', 'Wiek')
+    df = pd.DataFrame(data, columns=['value', 'result'])
+
+    match dice_roller(3, 6):
+        case 3:
+            hero.age = (df.iloc[0, 1])
+        case 4 | 5 | 6 | 7:
+            hero.age = (df.iloc[1, 1])
+        case 8 | 9 | 10 | 11 | 12:
+            hero.age = (df.iloc[2, 1])
+        case 13 | 14 | 15:
+            hero.age = (df.iloc[3, 1])
+        case 16 | 17:
+            hero.age = (df.iloc[4, 1])
+        case 18:
+            hero.age = (df.iloc[5, 1])
+
+
+def changeling_body_picker(hero, database_name):
+    data = pd.read_excel(f'dataBase\{database_name}.xlsx', 'Budowa Ciała')
+    df = pd.DataFrame(data, columns=['value', 'result'])
+
+    match dice_roller(1, 6):
+        case 1 | 2 | 3:
+            hero.body = (df.iloc[0, 1])
+        case 4 | 5 | 6:
+            hero.body = (df.iloc[1, 1])
+
+
+def changeling_strange_habit_picker(hero, database_name):
+
+    data = pd.read_excel(f'dataBase\{database_name}.xlsx', 'Przeszłość')
+    df = pd.DataFrame(data, columns=['value', 'result'])
+    dice_roll = random.randint(1, 20)
+    hero.backstory = (df.iloc[dice_roll, 1])
+
+
+def orc_age_picker(hero, database_name):
+    data = pd.read_excel(f'dataBase\{database_name}.xlsx', 'Wiek')
+    df = pd.DataFrame(data, columns=['value', 'result'])
+
+    match dice_roller(3, 6):
+        case 3:
+            hero.age = (df.iloc[0, 1])
+        case 4 | 5 | 6 | 7:
+            hero.age = (df.iloc[1, 1])
+        case 8 | 9 | 10 | 11 | 12:
+            hero.age = (df.iloc[2, 1])
+        case 13 | 14 | 15:
+            hero.age = (df.iloc[3, 1])
+        case 16 | 17:
+            hero.age = (df.iloc[4, 1])
+        case 18:
+            hero.age = (df.iloc[5, 1])
+
+
+def orc_body_picker(hero, database_name):
+    data = pd.read_excel(f'dataBase\{database_name}.xlsx', 'Budowa Ciała')
+    df = pd.DataFrame(data, columns=['value', 'result'])
+
+    match dice_roller(3, 6):
+        case 3:
+            hero.body = (df.iloc[0, 1])
+        case 4:
+            hero.body = (df.iloc[1, 1])
+        case 5 | 6:
+            hero.body = (df.iloc[2, 1])
+        case 7 | 8:
+            hero.body = (df.iloc[3, 1])
+        case 9 | 10 | 11 | 12:
+            hero.body = (df.iloc[4, 1])
+        case 13 | 14:
+            hero.body = (df.iloc[5, 1])
+        case 15 | 16:
+            hero.body = (df.iloc[6, 1])
+        case 17:
+            hero.body = (df.iloc[7, 1])
+        case 18:
+            hero.body = (df.iloc[8, 1])
+
+
+def orc_backstory_picker(hero, database_name):
+
+    data = pd.read_excel(f'dataBase\{database_name}.xlsx', 'Przeszłość')
+    df = pd.DataFrame(data, columns=['value', 'result'])
+    dice_roll = random.randint(1, 20)
+    hero.backstory = (df.iloc[dice_roll, 1])
+
+
+def orc_character_picker(hero, database_name):
+    data = pd.read_excel(f'dataBase\{database_name}.xlsx', 'Osobowość')
+    df = pd.DataFrame(data, columns=['value', 'result'])
+
+    match dice_roller(3, 6):
+        case 3:
+            hero.body = (df.iloc[0, 1])
+        case 4:
+            hero.body = (df.iloc[1, 1])
+        case 5 | 6:
+            hero.body = (df.iloc[2, 1])
+        case 7 | 8:
+            hero.body = (df.iloc[3, 1])
+        case 9 | 10 | 11 | 12:
+            hero.body = (df.iloc[4, 1])
+        case 13 | 14:
+            hero.body = (df.iloc[5, 1])
+        case 15 | 16:
+            hero.body = (df.iloc[6, 1])
+        case 17:
+            hero.body = (df.iloc[7, 1])
+        case 18:
+            hero.body = (df.iloc[8, 1])
+
+
+def orc_appearance_picker(hero, database_name):
+    data = pd.read_excel(f'dataBase\{database_name}.xlsx', 'Wygląd')
+    df = pd.DataFrame(data, columns=['value', 'result'])
+
+    match dice_roller(3, 6):
+        case 3 | 4 | 5:
+            hero.appearance = (df.iloc[0, 1])
+        case 6 | 7 | 8:
+            hero.appearance = (df.iloc[1, 1])
+        case 9 | 10 | 11 | 12:
+            hero.appearance = (df.iloc[2, 1])
+        case 13 | 14 | 15:
+            hero.appearance = (df.iloc[3, 1])
+        case 16 | 17 :
+            hero.appearance = (df.iloc[4, 1])
+        case 18:
+            hero.appearance = (df.iloc[5, 1])
+
+
 class BackstoryCreator:
 
     @staticmethod
@@ -266,16 +627,38 @@ class BackstoryCreator:
 
             case "Goblin":
                 database_name = "goblinAncestry"
-                human_backstory_picker(hero, database_name)
+                goblin_age_picker(hero, database_name)
+                goblin_body_picker(hero, database_name)
+                goblin_backstory_picker(hero, database_name)
+                goblin_character_picker(hero, database_name)
+                goblin_special_feature_picker(hero, database_name)
+                goblin_strange_habit_picker(hero, database_name)
+
             case "Krasnolud":
                 database_name = "krasnoludAncestry"
-                human_backstory_picker(hero, database_name)
+                dwarf_backstory_picker(hero, database_name)
+                dwarf_character_picker(hero, database_name)
+                dwarf_special_feature_picker(hero, database_name)
+                dwarf_age_picker(hero, database_name)
+                dwarf_hatred_race_picker(hero, database_name)
+                dwarf_body_picker(hero, database_name)
+
             case "Odmieniec":
                 database_name = "odmieniecAncestry"
-                human_backstory_picker(hero, database_name)
+                changeling_backstory_picker(hero, database_name)
+                changeling_age_picker(hero, database_name)
+                changeling_body_picker(hero, database_name)
+                changeling_character_picker(hero, database_name)
+                changeling_strange_habit_picker(hero, database_name)
+                changeling_special_feature_picker(hero, database_name)
+
             case "Ork":
                 database_name = "orkAncestry"
-                human_backstory_picker(hero, database_name)
+                orc_age_picker(hero, database_name)
+                orc_backstory_picker(hero, database_name)
+                orc_character_picker(hero, database_name)
+                orc_appearance_picker(hero, database_name)
+                orc_body_picker(hero, database_name)
             case _:
                 return "Błąd"
         return hero
