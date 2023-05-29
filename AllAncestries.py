@@ -42,7 +42,7 @@ class AllAncestries:
         hero.insanity = df.iloc[11, 1]
         hero.corruption = df.iloc[12, 1]
         hero.damage = df.iloc[13, 1]
-        hero.languages_verbal = [df.iloc[14, 1]]
+        hero.languages_spoken = [df.iloc[14, 1]]
         hero.languages_written = [df.iloc[15, 1]]
         hero.character_size = None
         return hero
