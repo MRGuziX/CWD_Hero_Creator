@@ -33,6 +33,8 @@ class PDFCreator:
         writer.update_page_form_field_values(writer.pages[0], {"Talenty rasowe": hero.changeling})
 
         writer.update_page_form_field_values(writer.pages[0], {"Wiek": hero.age})
+        writer.update_page_form_field_values(writer.pages[0], {"Wyglad": hero.appearance})
+        writer.update_page_form_field_values(writer.pages[0], {"Przeszlosc": hero.backstory})
         writer.update_page_form_field_values(writer.pages[0], {"Budowa Ciala": hero.body})
         writer.update_page_form_field_values(writer.pages[0], {"Religia": hero.quirks})
 

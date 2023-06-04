@@ -9,7 +9,7 @@ mechanic_instance = UpgradeMechanics()
 
 def human_backstory_picker(hero, database_name):
     data = pd.read_excel(f'dataBase\{database_name}.xlsx', 'Przeszłość')
-    df = pd.DataFrame(data, columns=['value', 'result'])
+    df = pd.DataFrame(data, columns=['result', 'value'])
     dice_roll = random.randint(1, 20)
     hero.backstory = (df.iloc[dice_roll, 0])
 
@@ -23,8 +23,8 @@ def human_backstory_picker(hero, database_name):
         case 13:
             mechanic_instance.add_language(hero, "verbal", None, True)
         case 14:
-            hero.language_spoken.append("Wspólny")
-            hero.language_written.append("Wspólny")
+            hero.languages_spoken.append("Wspólny")
+            hero.languages_written.append("Wspólny")
         case 20:
             hero.copper_coins += dice_roller(2, 6)
 
