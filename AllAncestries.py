@@ -29,21 +29,19 @@ class AllAncestries:
         data = pd.read_excel(f'dataBase\{database_name}.xlsx', f'{database_name}')
         df = pd.DataFrame(data, columns=['attribute', 'value'])
 
-        hero.strength = (df.iloc[1, 1])
-        hero.dexterity = df.iloc[2, 1]
-        hero.intelligence = df.iloc[3, 1]
-        hero.will = df.iloc[4, 1]
+        hero.strength = (df.iloc[0, 1])
+        hero.dexterity = df.iloc[1, 1]
+        hero.intelligence = df.iloc[2, 1]
+        hero.will = df.iloc[3, 1]
         hero.perception = hero.intelligence
         hero.health = hero.strength
-        hero.speed = df.iloc[7, 1]
-        hero.defence = df.iloc[8, 1]
-        hero.healing_rate = df.iloc[9, 1]
-        hero.power = df.iloc[10, 1]
-        hero.insanity = df.iloc[11, 1]
-        hero.corruption = df.iloc[12, 1]
-        hero.damage = df.iloc[13, 1]
-        hero.languages_verbal = [df.iloc[14, 1]]
-        hero.languages_written = [df.iloc[15, 1]]
+        hero.speed = df.iloc[6, 1]
+        hero.defence = df.iloc[7, 1]
+        hero.healing_rate = df.iloc[8, 1]
+        hero.power = df.iloc[9, 1]
+        hero.insanity = df.iloc[10, 1]
+        hero.corruption = df.iloc[11, 1]
+        hero.damage = df.iloc[12, 1]
         hero.character_size = None
         return hero
 
