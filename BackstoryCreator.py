@@ -21,7 +21,7 @@ def human_backstory_picker(hero, database_name):
         case 4:
             hero.corruption += 1
         case 13:
-            mechanic_instance.add_language(hero, "verbal")
+            mechanic_instance.add_language(hero, "verbal", None, True)
         case 14:
             hero.language_spoken.append("Wspólny")
             hero.language_written.append("Wspólny")
@@ -155,7 +155,7 @@ def automaton_backstory_picker(hero, database_name):
             hero.insanity += dice_roller(1, 6)
             # dodaj profesje
         case 13:
-            mechanic_instance.add_language(hero, "verbal")
+            mechanic_instance.add_language(hero, "verbal", None, True)
         case 14:
             hero.language_spoken.append("Wspólny")
             hero.language_written.append("Wspólny")
@@ -314,7 +314,7 @@ def goblin_backstory_picker(hero, database_name):
         case 12:
             print("dodaj profesje")
         case 13:
-            mechanic_instance.add_language(hero, "verbal")
+            mechanic_instance.add_language(hero, "verbal", None, True)
         case 14:
             print("dodaj nóż do equ")
         case 20:
@@ -502,7 +502,7 @@ def dwarf_backstory_picker(hero, database_name):
         case 12:
             print("dodaj profesje")
         case 13:
-            mechanic_instance.add_language(hero, "verbal")
+            mechanic_instance.add_language(hero, "verbal", None, True)
         case 14:
             print("dodaj topór lub młot do equ")
         case 20:
@@ -608,7 +608,7 @@ def changeling_backstory_picker(hero, database_name):
             hero.corruption += 1
         case 4:
             hero.corruption += 1
-            mechanic_instance.add_language(hero, "verbal")
+            mechanic_instance.add_language(hero, "verbal", None, True)
         case 14:
             hero.language_spoken.append("Wspólny")
             hero.language_written.append("Wspólny")
@@ -698,6 +698,21 @@ def orc_backstory_picker(hero, database_name):
     dice_roll = random.randint(1, 20)
     hero.backstory = (df.iloc[dice_roll, 1])
 
+    match dice_roll:
+        case 1:
+            hero.corruption += 2
+        case 2:
+            hero.corruption += 1
+        case 14:
+            hero.language_spoken.append("Wspólny")
+            hero.language_written.append("Wspólny")
+        case 18:
+            print("doddaj miecz do equ")
+        case 19:
+            hero.corruption += 1
+        case 20:
+            hero.copper_coins += dice_roller(2, 6)
+
 
 def orc_character_picker(hero, database_name):
     data = pd.read_excel(f'dataBase\{database_name}.xlsx', 'Osobowość')
@@ -705,23 +720,23 @@ def orc_character_picker(hero, database_name):
 
     match dice_roller(3, 6):
         case 3:
-            hero.body = (df.iloc[0, 1])
+            hero.character = (df.iloc[0, 1])
         case 4:
-            hero.body = (df.iloc[1, 1])
+            hero.character = (df.iloc[1, 1])
         case 5 | 6:
-            hero.body = (df.iloc[2, 1])
+            hero.character = (df.iloc[2, 1])
         case 7 | 8:
-            hero.body = (df.iloc[3, 1])
+            hero.character = (df.iloc[3, 1])
         case 9 | 10 | 11 | 12:
-            hero.body = (df.iloc[4, 1])
+            hero.character = (df.iloc[4, 1])
         case 13 | 14:
-            hero.body = (df.iloc[5, 1])
+            hero.character = (df.iloc[5, 1])
         case 15 | 16:
-            hero.body = (df.iloc[6, 1])
+            hero.character = (df.iloc[6, 1])
         case 17:
-            hero.body = (df.iloc[7, 1])
+            hero.character = (df.iloc[7, 1])
         case 18:
-            hero.body = (df.iloc[8, 1])
+            hero.character = (df.iloc[8, 1])
 
 
 def orc_appearance_picker(hero, database_name):
@@ -766,6 +781,7 @@ class BackstoryCreator:
                 automaton_character_picker(hero, database_name)
                 automaton_function_picker(hero, database_name)
                 automaton_form_picker(hero, database_name)
+                return hero
 
             case "Goblin":
                 database_name = "goblinAncestry"
@@ -775,6 +791,7 @@ class BackstoryCreator:
                 goblin_character_picker(hero, database_name)
                 goblin_special_feature_picker(hero, database_name)
                 goblin_strange_habit_picker(hero, database_name)
+                return hero
 
             case "Krasnolud":
                 database_name = "krasnoludAncestry"
@@ -784,16 +801,17 @@ class BackstoryCreator:
                 dwarf_age_picker(hero, database_name)
                 dwarf_hatred_race_picker(hero, database_name)
                 dwarf_body_picker(hero, database_name)
+                return hero
 
             case "Odmieniec":
-
                 database_name = "odmieniecAncestry"
                 changeling_fake_appearance_picker(hero, database_name)
-                hero.changeling = changeling_age_picker(hero, database_name)
-                hero.changeling = changeling_body_picker(hero, database_name)
+                changeling_age_picker(hero, database_name)
+                changeling_body_picker(hero, database_name)
                 changeling_backstory_picker(hero, database_name)
                 changeling_character_picker(hero, database_name)
                 changeling_strange_habit_picker(hero, database_name)
+                return hero
 
             case "Ork":
                 database_name = "orkAncestry"
@@ -802,6 +820,7 @@ class BackstoryCreator:
                 orc_character_picker(hero, database_name)
                 orc_appearance_picker(hero, database_name)
                 orc_body_picker(hero, database_name)
+                return hero
+
             case _:
                 return "Błąd"
-        return hero

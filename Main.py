@@ -28,21 +28,41 @@ match ancestry_choice:
         hero = backstory_instance.database_picker(hero)
         hero = mechanic_instance.add_attribute_points(hero, 1)
         hero = mechanic_instance.add_size(hero)
-
+        hero = mechanic_instance.add_language(hero, "verbal", "Wspólny", False)
+        profession_or_language = input("Chcesz dodatkowy język mówiony czy profesję?\n"
+                                       "1. Język\n"
+                                       "2. Profesja")
+        if profession_or_language == "1":
+            hero = mechanic_instance.add_language(hero, "verbal", None, True)
+        else:
+            mechanic_instance.add_profession(hero)
         hero = pdf_creator_instance.pdf_creator(hero)
 
     case "Automaton":
         hero = backstory_instance.database_picker(hero)
-        hero = mechanic_instance.add_language(hero)
+
+        #dodanie ifnromacji o formie obiektu na kartę postaci
+        hero = pdf_creator_instance.pdf_creator(hero)
+
     case "Goblin":
         hero = backstory_instance.database_picker(hero)
+        hero = mechanic_instance.add_language(hero, "verbal", "Wspólny", False)
+        hero = mechanic_instance.add_language(hero, "verbal", "Elficki", False)
 
-    # case "Krasnolud":
-    #
+        hero = pdf_creator_instance.pdf_creator(hero)
+
+    case "Krasnolud":
+        hero = backstory_instance.database_picker(hero)
+        hero = pdf_creator_instance.pdf_creator(hero)
+
     case "Odmieniec":
         hero = backstory_instance.database_picker(hero)
+        hero = pdf_creator_instance.pdf_creator(hero)
 
-# case "Ork":
+    case "Ork":
+        hero = backstory_instance.database_picker(hero)
+        hero = pdf_creator_instance.pdf_creator(hero)
+
 
 # """Po backstory wybieramy sobie profesje czy 2 profesje czy jedna profesja i język.
 # musimy pokazać graczowi jakie języki już zna. Zwrócić listę języków"""
@@ -50,25 +70,4 @@ match ancestry_choice:
 # dodanie do wyborów z backstory modyfikacji equ i statów i języków
 #
 
-# def profession_picker(languages_verbal, languages_written):
-#     dice_roller(3, 6)
-#     # wybierz diwe profesje lub zrezygnuj z jednej w zamian za mówienie w jednym nowym jezyku, lub czytanie i pisanie w tym który juz znasz
-#     print(
-#         "Teraz możesz wybrać dwie profesje, lub profesje i możliwość mówienia nowym językiem lub umiejętność czytania i pisania w języku którym już umiesz mówić.")
-#     print("Czy chcesz wybrać dodatkowy język zamiast profesji?\n\n"
-#           "1.Tak\n"
-#           "2.Nie")
-#
-#     profession_choice = input()
-#
-#     if profession_choice == 1:
-#         data = pd.read_excel('dataBase\utilities.xlsx', 'Języki')
-#         df = pd.DataFrame(data, columns=['value', 'result'])
-#
-#         print("To języki które Twoja postać posiada:")
-#         print("Mówione:")
-#         print(languages_verbal)
-#         print("Czytanie i Pisanie:")
-#         print(languages_written)
-#         print("Chcesz dodać nowy jezyk mówiony, czy nauczyć się czytać i pisać w już posiadanym?")
-#         learned_new_language = input("")
+
