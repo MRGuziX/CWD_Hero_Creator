@@ -26,7 +26,7 @@ class AllAncestries:
             case _:
                 return "Błąd"
 
-        data = pd.read_excel(f'dataBase\{database_name}.xlsx', f'{database_name}')
+        data = pd.read_excel(f'dataBase/{database_name}.xlsx', f'{database_name}')
         df = pd.DataFrame(data, columns=['attribute', 'value'])
 
         hero.strength = (df.iloc[0, 1])

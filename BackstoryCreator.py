@@ -8,29 +8,29 @@ mechanic_instance = UpgradeMechanics()
 
 
 def human_backstory_picker(hero, database_name):
-    data = pd.read_excel(f'dataBase\{database_name}.xlsx', 'Przeszłość')
+    data = pd.read_excel(f'dataBase/{database_name}.xlsx', 'Przeszłość')
     df = pd.DataFrame(data, columns=['result', 'value'])
-    dice_roll = random.randint(1, 20)
+    dice_roll = random.randint(0, 19)
     hero.backstory = (df.iloc[dice_roll, 0])
 
     match dice_roll:
-        case 1:
+        case 0:
             hero.insanity += dice_roller(1, 6)
-        case 2:
+        case 1:
             hero.corruption += 1
-        case 4:
+        case 3:
             hero.corruption += 1
-        case 13:
+        case 12:
             mechanic_instance.add_language(hero, "verbal", None, True)
-        case 14:
+        case 13:
             hero.languages_spoken.append("Wspólny")
             hero.languages_written.append("Wspólny")
-        case 20:
+        case 19:
             hero.copper_coins += dice_roller(2, 6)
 
 
 def human_age_picker(hero, database_name):
-    data = pd.read_excel(f'dataBase\{database_name}.xlsx', 'Wiek')
+    data = pd.read_excel(f'dataBase/{database_name}.xlsx', 'Wiek')
     df = pd.DataFrame(data, columns=['value', 'result'])
 
     match dice_roller(3, 6):
@@ -49,7 +49,7 @@ def human_age_picker(hero, database_name):
 
 
 def human_character_picker(hero, database_name):
-    data = pd.read_excel(f'dataBase\{database_name}.xlsx', 'Osobowość')
+    data = pd.read_excel(f'dataBase/{database_name}.xlsx', 'Osobowość')
     df = pd.DataFrame(data, columns=['value', 'result'])
 
     match dice_roller(3, 6):
@@ -74,7 +74,7 @@ def human_character_picker(hero, database_name):
 
 
 def human_religion_picker(hero, database_name):
-    data = pd.read_excel(f'dataBase\{database_name}.xlsx', 'Religia')
+    data = pd.read_excel(f'dataBase/{database_name}.xlsx', 'Religia')
     df = pd.DataFrame(data, columns=['value', 'result'])
 
     match dice_roller(3, 6):
@@ -93,7 +93,7 @@ def human_religion_picker(hero, database_name):
 
 
 def human_body_picker(hero, database_name):
-    data = pd.read_excel(f'dataBase\{database_name}.xlsx', 'Budowa Ciała')
+    data = pd.read_excel(f'dataBase/{database_name}.xlsx', 'Budowa Ciała')
     df = pd.DataFrame(data, columns=['value', 'result'])
 
     match dice_roller(3, 6):
@@ -118,7 +118,7 @@ def human_body_picker(hero, database_name):
 
 
 def human_appearance_picker(hero, database_name):
-    data = pd.read_excel(f'dataBase\{database_name}.xlsx', 'Wygląd')
+    data = pd.read_excel(f'dataBase/{database_name}.xlsx', 'Wygląd')
     df = pd.DataFrame(data, columns=['value', 'result'])
 
     match dice_roller(3, 6):
@@ -143,30 +143,30 @@ def human_appearance_picker(hero, database_name):
 
 
 def automaton_backstory_picker(hero, database_name):
-    data = pd.read_excel(f'dataBase\{database_name}.xlsx', 'Przeszłość')
+    data = pd.read_excel(f'dataBase/{database_name}.xlsx', 'Przeszłość')
     df = pd.DataFrame(data, columns=['value', 'result'])
-    dice_roll = random.randint(1, 20)
+    dice_roll = random.randint(0, 19)
     hero.backstory = (df.iloc[dice_roll, 1])
 
     match dice_roll:
-        case 1:
+        case 0:
             hero.corruption += dice_roller(1, 3)
-        case 2:
+        case 1:
             hero.insanity += dice_roller(1, 6)
             # dodaj profesje
-        case 13:
+        case 12:
             mechanic_instance.add_language(hero, "verbal", None, True)
-        case 14:
+        case 13:
             hero.language_spoken.append("Wspólny")
             hero.language_written.append("Wspólny")
-        case 19:
+        case 18:
             print("dodaj miecz do equ")
-        case 20:
+        case 19:
             hero.copper_coins += dice_roller(2, 6)
 
 
 def automaton_appearance_picker(hero, database_name):
-    data = pd.read_excel(f'dataBase\{database_name}.xlsx', 'Wygląd')
+    data = pd.read_excel(f'dataBase/{database_name}.xlsx', 'Wygląd')
     df = pd.DataFrame(data, columns=['value', 'result'])
 
     match dice_roller(3, 6):
@@ -191,13 +191,13 @@ def automaton_appearance_picker(hero, database_name):
 
 
 def automaton_function_picker(hero, database_name):
-    data = pd.read_excel(f'dataBase\{database_name}.xlsx', 'Funkcja')
+    data = pd.read_excel(f'dataBase/{database_name}.xlsx', 'Funkcja')
     df = pd.DataFrame(data, columns=['value', 'result'])
-    dice_roll = random.randint(1, 20)
+    dice_roll = random.randint(0, 19)
     hero.backstory = (df.iloc[dice_roll, 0])
 
     match dice_roll:
-        case 1 | 2 | 3 | 4:
+        case 0 | 1 | 2 | 3:
             choice = input("Chcesz zwiększyć:\n"
                            "1. Siła\n"
                            "2. Zręczność")
@@ -205,9 +205,9 @@ def automaton_function_picker(hero, database_name):
                 hero.strength += 2
             else:
                 hero.dexterity += 2
-        case 5 | 6 | 7 | 8:
+        case 4 | 5 | 6 | 7:
             hero.strength += 2
-        case 9 | 10 | 11 | 12:
+        case 8 | 9 | 10 | 11:
             choice = input("Chcesz zwiększyć:\n"
                            "1. Inteligencja\n"
                            "2. Wola")
@@ -216,7 +216,7 @@ def automaton_function_picker(hero, database_name):
             else:
                 hero.will += 2
 
-        case 13 | 14 | 15 | 16:
+        case 12 | 13 | 14 | 15:
             choice = input("Chcesz zwiększyć:\n"
                            "1. Zręczność\n"
                            "2. Intelekt")
@@ -224,12 +224,12 @@ def automaton_function_picker(hero, database_name):
                 hero.dexterity += 2
             else:
                 hero.intelligence += 2
-        case 17 | 18 | 19 | 20:
+        case 16 | 17 | 18 | 19:
             mechanic_instance.add_attribute_points(hero, 2)
 
 
 def automaton_age_picker(hero, database_name):
-    data = pd.read_excel(f'dataBase\{database_name}.xlsx', 'Wiek')
+    data = pd.read_excel(f'dataBase/{database_name}.xlsx', 'Wiek')
     df = pd.DataFrame(data, columns=['value', 'result'])
 
     match dice_roller(3, 6):
@@ -246,7 +246,7 @@ def automaton_age_picker(hero, database_name):
 
 
 def automaton_character_picker(hero, database_name):
-    data = pd.read_excel(f'dataBase\{database_name}.xlsx', 'Osobowość')
+    data = pd.read_excel(f'dataBase/{database_name}.xlsx', 'Osobowość')
     df = pd.DataFrame(data, columns=['value', 'result'])
 
     match dice_roller(3, 6):
@@ -271,7 +271,7 @@ def automaton_character_picker(hero, database_name):
 
 
 def automaton_form_picker(hero, database_name):
-    data = pd.read_excel(f'dataBase\{database_name}.xlsx', 'Forma')
+    data = pd.read_excel(f'dataBase/{database_name}.xlsx', 'Forma')
     df = pd.DataFrame(data, columns=['value', 'result'])
 
     match dice_roller(3, 6):
@@ -301,28 +301,28 @@ def automaton_form_picker(hero, database_name):
 
 
 def goblin_backstory_picker(hero, database_name):
-    data = pd.read_excel(f'dataBase\{database_name}.xlsx', 'Przeszłość')
+    data = pd.read_excel(f'dataBase/{database_name}.xlsx', 'Przeszłość')
     df = pd.DataFrame(data, columns=['value', 'result'])
-    dice_roll = random.randint(1, 20)
+    dice_roll = random.randint(0, 19)
     hero.backstory = (df.iloc[dice_roll, 1])
 
     match dice_roll:
-        case 1:
+        case 0:
             hero.corruption += 1
-        case 6:
+        case 5:
             hero.insanity += 1
-        case 12:
+        case 11:
             print("dodaj profesje")
-        case 13:
+        case 12:
             mechanic_instance.add_language(hero, "verbal", None, True)
-        case 14:
+        case 13:
             print("dodaj nóż do equ")
-        case 20:
-            hero.copper_coins += dice_roller(2, 6)
+        case 19:
+            hero.copper_coins += int(dice_roller(2, 6))
 
 
 def goblin_character_picker(hero, database_name):
-    data = pd.read_excel(f'dataBase\{database_name}.xlsx', 'Osobowość')
+    data = pd.read_excel(f'dataBase/{database_name}.xlsx', 'Osobowość')
     df = pd.DataFrame(data, columns=['value', 'result'])
 
     match dice_roller(3, 6):
@@ -347,14 +347,14 @@ def goblin_character_picker(hero, database_name):
 
 
 def goblin_special_feature_picker(hero, database_name):
-    data = pd.read_excel(f'dataBase\{database_name}.xlsx', 'Cecha Szczególna')
+    data = pd.read_excel(f'dataBase/{database_name}.xlsx', 'Cecha Szczególna')
     df = pd.DataFrame(data, columns=['value', 'result'])
-    dice_roll = random.randint(1, 20)
+    dice_roll = random.randint(0, 19)
     hero.appearance = (df.iloc[dice_roll, 1])
 
 
 def goblin_age_picker(hero, database_name):
-    data = pd.read_excel(f'dataBase\{database_name}.xlsx', 'Wiek')
+    data = pd.read_excel(f'dataBase/{database_name}.xlsx', 'Wiek')
     df = pd.DataFrame(data, columns=['value', 'result'])
 
     match dice_roller(3, 6):
@@ -373,7 +373,7 @@ def goblin_age_picker(hero, database_name):
 
 
 def goblin_body_picker(hero, database_name):
-    data = pd.read_excel(f'dataBase\{database_name}.xlsx', 'Budowa Ciała')
+    data = pd.read_excel(f'dataBase/{database_name}.xlsx', 'Budowa Ciała')
     df = pd.DataFrame(data, columns=['value', 'result'])
 
     match dice_roller(3, 6):
@@ -398,14 +398,14 @@ def goblin_body_picker(hero, database_name):
 
 
 def goblin_strange_habit_picker(hero, database_name):
-    data = pd.read_excel(f'dataBase\{database_name}.xlsx', 'Dziwny Nawyk')
+    data = pd.read_excel(f'dataBase/{database_name}.xlsx', 'Dziwny Nawyk')
     df = pd.DataFrame(data, columns=['value', 'result'])
-    dice_roll = random.randint(1, 20)
+    dice_roll = random.randint(0, 19)
     hero.quirks = (df.iloc[dice_roll, 1])
 
 
 def dwarf_age_picker(hero, database_name):
-    data = pd.read_excel(f'dataBase\{database_name}.xlsx', 'Wiek')
+    data = pd.read_excel(f'dataBase/{database_name}.xlsx', 'Wiek')
     df = pd.DataFrame(data, columns=['value', 'result'])
 
     match dice_roller(3, 6):
@@ -424,7 +424,7 @@ def dwarf_age_picker(hero, database_name):
 
 
 def dwarf_body_picker(hero, database_name):
-    data = pd.read_excel(f'dataBase\{database_name}.xlsx', 'Budowa Ciała')
+    data = pd.read_excel(f'dataBase/{database_name}.xlsx', 'Budowa Ciała')
     df = pd.DataFrame(data, columns=['value', 'result'])
 
     match dice_roller(3, 6):
@@ -445,7 +445,7 @@ def dwarf_body_picker(hero, database_name):
 
 
 def dwarf_appearance_picker(hero, database_name):
-    data = pd.read_excel(f'dataBase\{database_name}.xlsx', 'Wygląd')
+    data = pd.read_excel(f'dataBase/{database_name}.xlsx', 'Wygląd')
     df = pd.DataFrame(data, columns=['value', 'result'])
 
     match dice_roller(3, 6):
@@ -464,7 +464,7 @@ def dwarf_appearance_picker(hero, database_name):
 
 
 def dwarf_hatred_race_picker(hero, database_name):
-    data = pd.read_excel(f'dataBase\{database_name}.xlsx', 'Znienawidzone Stworzenia')
+    data = pd.read_excel(f'dataBase/{database_name}.xlsx', 'Znienawidzone Stworzenia')
     df = pd.DataFrame(data, columns=['value', 'result'])
 
     match dice_roller(3, 6):
@@ -491,26 +491,26 @@ def dwarf_hatred_race_picker(hero, database_name):
 
 
 def dwarf_backstory_picker(hero, database_name):
-    data = pd.read_excel(f'dataBase\{database_name}.xlsx', 'Przeszłość')
+    data = pd.read_excel(f'dataBase/{database_name}.xlsx', 'Przeszłość')
     df = pd.DataFrame(data, columns=['value', 'result'])
-    dice_roll = random.randint(1, 20)
+    dice_roll = random.randint(0, 19)
     hero.backstory = (df.iloc[dice_roll, 1])
 
     match dice_roll:
-        case 1:
+        case 0:
             hero.corruption += 1
-        case 12:
+        case 11:
             print("dodaj profesje")
-        case 13:
+        case 12:
             mechanic_instance.add_language(hero, "verbal", None, True)
-        case 14:
+        case 13:
             print("dodaj topór lub młot do equ")
-        case 20:
+        case 19:
             hero.copper_coins += dice_roller(2, 6)
 
 
 def dwarf_character_picker(hero, database_name):
-    data = pd.read_excel(f'dataBase\{database_name}.xlsx', 'Osobowość')
+    data = pd.read_excel(f'dataBase/{database_name}.xlsx', 'Osobowość')
     df = pd.DataFrame(data, columns=['value', 'result'])
 
     match dice_roller(3, 6):
@@ -535,7 +535,7 @@ def dwarf_character_picker(hero, database_name):
 
 
 def changeling_age_picker(hero, database_name):
-    data = pd.read_excel(f'dataBase\{database_name}.xlsx', 'Wiek')
+    data = pd.read_excel(f'dataBase/{database_name}.xlsx', 'Wiek')
     df = pd.DataFrame(data, columns=['value', 'result'])
 
     match dice_roller(3, 6):
@@ -555,7 +555,7 @@ def changeling_age_picker(hero, database_name):
 
 
 def changeling_body_picker(hero, database_name):
-    data = pd.read_excel(f'dataBase\{database_name}.xlsx', 'Budowa Ciała')
+    data = pd.read_excel(f'dataBase/{database_name}.xlsx', 'Budowa Ciała')
     df = pd.DataFrame(data, columns=['value', 'result'])
 
     match dice_roller(1, 6):
@@ -567,7 +567,7 @@ def changeling_body_picker(hero, database_name):
 
 
 def changeling_fake_appearance_picker(hero, database_name):
-    data = pd.read_excel(f'dataBase\{database_name}.xlsx', 'Pozorne Pochodzenie')
+    data = pd.read_excel(f'dataBase/{database_name}.xlsx', 'Pozorne Pochodzenie')
     df = pd.DataFrame(data, columns=['value', 'result'])
 
     match dice_roller(3, 6):
@@ -596,35 +596,35 @@ def changeling_fake_appearance_picker(hero, database_name):
 
 
 def changeling_backstory_picker(hero, database_name):
-    data = pd.read_excel(f'dataBase\{database_name}.xlsx', 'Przeszłość')
+    data = pd.read_excel(f'dataBase/{database_name}.xlsx', 'Przeszłość')
     df = pd.DataFrame(data, columns=['value', 'result'])
-    dice_roll = random.randint(1, 20)
+    dice_roll = random.randint(0, 19)
     hero.backstory = (df.iloc[dice_roll, 1])
 
     match dice_roll:
-        case 1:
+        case 0:
             hero.insanity += 1
+        case 2:
+            hero.corruption += 1
         case 3:
             hero.corruption += 1
-        case 4:
-            hero.corruption += 1
             mechanic_instance.add_language(hero, "verbal", None, True)
-        case 14:
+        case 13:
             hero.language_spoken.append("Wspólny")
             hero.language_written.append("Wspólny")
-        case 20:
+        case 19:
             hero.copper_coins += dice_roller(2, 6)
 
 
 def changeling_strange_habit_picker(hero, database_name):
-    data = pd.read_excel(f'dataBase\{database_name}.xlsx', 'Dziwactwo')
+    data = pd.read_excel(f'dataBase/{database_name}.xlsx', 'Dziwactwo')
     df = pd.DataFrame(data, columns=['value', 'result'])
-    dice_roll = random.randint(1, 20)
+    dice_roll = random.randint(0, 19)
     hero.quirks = (df.iloc[dice_roll, 1])
 
 
 def changeling_character_picker(hero, database_name):
-    data = pd.read_excel(f'dataBase\{database_name}.xlsx', 'Osobowość')
+    data = pd.read_excel(f'dataBase/{database_name}.xlsx', 'Osobowość')
     df = pd.DataFrame(data, columns=['value', 'result'])
 
     match dice_roller(3, 6):
@@ -649,7 +649,7 @@ def changeling_character_picker(hero, database_name):
 
 
 def orc_age_picker(hero, database_name):
-    data = pd.read_excel(f'dataBase\{database_name}.xlsx', 'Wiek')
+    data = pd.read_excel(f'dataBase/{database_name}.xlsx', 'Wiek')
     df = pd.DataFrame(data, columns=['value', 'result'])
 
     match dice_roller(3, 6):
@@ -668,7 +668,7 @@ def orc_age_picker(hero, database_name):
 
 
 def orc_body_picker(hero, database_name):
-    data = pd.read_excel(f'dataBase\{database_name}.xlsx', 'Budowa Ciała')
+    data = pd.read_excel(f'dataBase/{database_name}.xlsx', 'Budowa Ciała')
     df = pd.DataFrame(data, columns=['value', 'result'])
 
     match dice_roller(3, 6):
@@ -693,29 +693,29 @@ def orc_body_picker(hero, database_name):
 
 
 def orc_backstory_picker(hero, database_name):
-    data = pd.read_excel(f'dataBase\{database_name}.xlsx', 'Przeszłość')
+    data = pd.read_excel(f'dataBase/{database_name}.xlsx', 'Przeszłość')
     df = pd.DataFrame(data, columns=['value', 'result'])
-    dice_roll = random.randint(1, 20)
+    dice_roll = random.randint(0, 19)
     hero.backstory = (df.iloc[dice_roll, 1])
 
     match dice_roll:
-        case 1:
+        case 0:
             hero.corruption += 2
-        case 2:
+        case 1:
             hero.corruption += 1
-        case 14:
+        case 13:
             hero.language_spoken.append("Wspólny")
             hero.language_written.append("Wspólny")
-        case 18:
+        case 17:
             print("doddaj miecz do equ")
-        case 19:
+        case 18:
             hero.corruption += 1
-        case 20:
+        case 19:
             hero.copper_coins += dice_roller(2, 6)
 
 
 def orc_character_picker(hero, database_name):
-    data = pd.read_excel(f'dataBase\{database_name}.xlsx', 'Osobowość')
+    data = pd.read_excel(f'dataBase/{database_name}.xlsx', 'Osobowość')
     df = pd.DataFrame(data, columns=['value', 'result'])
 
     match dice_roller(3, 6):
@@ -740,7 +740,7 @@ def orc_character_picker(hero, database_name):
 
 
 def orc_appearance_picker(hero, database_name):
-    data = pd.read_excel(f'dataBase\{database_name}.xlsx', 'Wygląd')
+    data = pd.read_excel(f'dataBase/{database_name}.xlsx', 'Wygląd')
     df = pd.DataFrame(data, columns=['value', 'result'])
 
     match dice_roller(3, 6):

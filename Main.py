@@ -13,7 +13,6 @@ backstory_instance = BackstoryCreator()
 pdf_creator_instance = PDFCreator()
 
 name = input("Podaj imię bohatera:")
-hero.name = name
 book_choice = book_instance.book_pick()
 hero.book = book_choice
 ancestry_choice = book_instance.ancestry_pick(book_choice)
@@ -35,39 +34,48 @@ match ancestry_choice:
         if profession_or_language == "1":
             hero = mechanic_instance.add_language(hero, "verbal", None, True)
         else:
-            mechanic_instance.add_profession(hero)
-        hero = pdf_creator_instance.pdf_creator(hero)
+            hero = mechanic_instance.add_profession(hero, True)
 
     case "Automaton":
         hero = backstory_instance.database_picker(hero)
 
-        #dodanie ifnromacji o formie obiektu na kartę postaci
-        hero = pdf_creator_instance.pdf_creator(hero)
-
+        # dodanie ifnromacji o formie obiektu na kartę postaci
     case "Goblin":
         hero = backstory_instance.database_picker(hero)
         hero = mechanic_instance.add_language(hero, "verbal", "Wspólny", False)
         hero = mechanic_instance.add_language(hero, "verbal", "Elficki", False)
 
-        hero = pdf_creator_instance.pdf_creator(hero)
-
     case "Krasnolud":
         hero = backstory_instance.database_picker(hero)
-        hero = pdf_creator_instance.pdf_creator(hero)
 
     case "Odmieniec":
         hero = backstory_instance.database_picker(hero)
-        hero = pdf_creator_instance.pdf_creator(hero)
 
     case "Ork":
         hero = backstory_instance.database_picker(hero)
-        hero = pdf_creator_instance.pdf_creator(hero)
 
+print("Możesz wybrać: \n"
+      "1. Dwie dodatkowe profesje\n"
+      "2. Profesja ORAZ umiejętnosć czytania i pisania w języku w którym umiesz mówić.\n"
+      "3. Profesja ORAZ umiejętnosć mówienia w dodatkowym języku")
+profession_choice = int(input())
+match profession_choice:
+    case 1:
+        hero = mechanic_instance.add_profession(hero, True)
+        hero = mechanic_instance.add_profession(hero, True)
+
+    case 2:
+        hero = mechanic_instance.add_profession(hero, True)
+        hero = mechanic_instance.language_compare_add(hero, "written")
+
+    case 3:
+        hero = mechanic_instance.add_profession(hero, True)
+        hero = mechanic_instance.language_compare_add(hero, "verbal")
+
+pdf_creator_instance.pdf_creator(hero)
 
 # """Po backstory wybieramy sobie profesje czy 2 profesje czy jedna profesja i język.
 # musimy pokazać graczowi jakie języki już zna. Zwrócić listę języków"""
 
 # dodanie do wyborów z backstory modyfikacji equ i statów i języków
 #
-
-
