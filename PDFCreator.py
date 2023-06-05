@@ -1,6 +1,6 @@
 from pypdf import PdfReader, PdfWriter
 
-reader = PdfReader("utilities/BG_SHEET.pdf")
+reader = PdfReader("utilities/poprawiona_karta2_CWD.pdf")
 writer = PdfWriter()
 
 page = reader.pages[0]
@@ -12,35 +12,34 @@ writer.add_page(page)
 class PDFCreator:
     @staticmethod
     def pdf_creator(hero):
-        writer.update_page_form_field_values(writer.pages[0], {"Imie": hero.name})
-        writer.update_page_form_field_values(writer.pages[0], {"Pochodzenie": hero.ancestry})
+        writer.update_page_form_field_values(writer.pages[0], {"imie": hero.name})
+        writer.update_page_form_field_values(writer.pages[0], {"pochodzenie": hero.ancestry})
+        writer.update_page_form_field_values(writer.pages[0], {"sila": hero.strength})
+        writer.update_page_form_field_values(writer.pages[0], {"wola": hero.will})
+        writer.update_page_form_field_values(writer.pages[0], {"zrecznosc": hero.dexterity})
+        writer.update_page_form_field_values(writer.pages[0], {"intelekt": hero.intelligence})
+        writer.update_page_form_field_values(writer.pages[0], {"percepcja": hero.perception})
+        writer.update_page_form_field_values(writer.pages[0], {"zdrowie": hero.health})
+        writer.update_page_form_field_values(writer.pages[0], {"predkosc": hero.speed})
+        writer.update_page_form_field_values(writer.pages[0], {"obrona": hero.defence})
+        writer.update_page_form_field_values(writer.pages[0], {"predkosc_zdrowienia": hero.healing_rate})
+        writer.update_page_form_field_values(writer.pages[0], {"moc": hero.power})
+        writer.update_page_form_field_values(writer.pages[0], {"szalenstwo": hero.insanity})
+        writer.update_page_form_field_values(writer.pages[0], {"splugawienie": hero.corruption})
+        writer.update_page_form_field_values(writer.pages[0], {"jezyki_pisane": hero.languages_written})
+        writer.update_page_form_field_values(writer.pages[0], {"jezyki_mowione": hero.languages_spoken})
+        writer.update_page_form_field_values(writer.pages[0], {"rozmiar": hero.character_size})
 
-        writer.update_page_form_field_values(writer.pages[0], {"Siła": hero.strength})
-        writer.update_page_form_field_values(writer.pages[0], {"Wola": hero.will})
-        writer.update_page_form_field_values(writer.pages[0], {"Zręczność": hero.dexterity})
-        writer.update_page_form_field_values(writer.pages[0], {"Intelekt": hero.intelligence})
-        writer.update_page_form_field_values(writer.pages[0], {"Percepcja": hero.perception})
-        writer.update_page_form_field_values(writer.pages[0], {"Zdrowie": hero.health})
-        writer.update_page_form_field_values(writer.pages[0], {"Prędkość": hero.speed})
-        writer.update_page_form_field_values(writer.pages[0], {"Obrona": hero.defence})
-        writer.update_page_form_field_values(writer.pages[0], {"Predkosc zdrowienia": hero.healing_rate})
-        writer.update_page_form_field_values(writer.pages[0], {"Moc": hero.power})
-        writer.update_page_form_field_values(writer.pages[0], {"Szaleństwo": hero.insanity})
-        writer.update_page_form_field_values(writer.pages[0], {"Splugawienie": hero.corruption})
-        writer.update_page_form_field_values(writer.pages[0], {"Języki Pisane": hero.languages_written})
-        writer.update_page_form_field_values(writer.pages[0], {"Języki Mówione": hero.languages_spoken})
-        writer.update_page_form_field_values(writer.pages[0], {"Rozmiar": hero.character_size})
+        writer.update_page_form_field_values(writer.pages[0], {"wiek": hero.age})
+        writer.update_page_form_field_values(writer.pages[0], {"wyglad": hero.appearance})
+        writer.update_page_form_field_values(writer.pages[0], {"przeszlosc": hero.backstory})
+        writer.update_page_form_field_values(writer.pages[0], {"budowa_ciala": hero.body})
+        writer.update_page_form_field_values(writer.pages[0], {"religia": hero.religion})
+        writer.update_page_form_field_values(writer.pages[0], {"osobowosc": hero.character})
+        writer.update_page_form_field_values(writer.pages[0], {"dziwactwa": hero.quirks})
 
-        writer.update_page_form_field_values(writer.pages[0], {"Wiek": hero.age})
-        writer.update_page_form_field_values(writer.pages[0], {"Wygląd": hero.appearance})
-        writer.update_page_form_field_values(writer.pages[0], {"Przeszlosc": hero.backstory})
-        writer.update_page_form_field_values(writer.pages[0], {"Budowa Ciała": hero.body})
-        writer.update_page_form_field_values(writer.pages[0], {"Religia": hero.religion})
-        writer.update_page_form_field_values(writer.pages[0], {"Osobowość": hero.character})
-        writer.update_page_form_field_values(writer.pages[0], {"Dziwactwa": hero.quirks})
-
-        writer.update_page_form_field_values(writer.pages[0], {"Profesje": hero.professions})
-        writer.update_page_form_field_values(writer.pages[0], {"Miedziaki": hero.copper_coins})
+        writer.update_page_form_field_values(writer.pages[0], {"profesje": hero.professions})
+        writer.update_page_form_field_values(writer.pages[0], {"miedziaki": hero.copper_coins})
 
         # write "output" to PyPDF2-output.pdf
         with open("output/filled-out.pdf", "wb") as output_stream:

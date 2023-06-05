@@ -3,6 +3,7 @@ from AllBooks import AllBooks
 from BackstoryCreator import BackstoryCreator
 from HeroCreator import *
 from PDFCreator import PDFCreator
+
 from UpgradeMechanics import UpgradeMechanics
 
 hero = Characters()
@@ -12,15 +13,12 @@ mechanic_instance = UpgradeMechanics()
 backstory_instance = BackstoryCreator()
 pdf_creator_instance = PDFCreator()
 
-name = input("Podaj imię bohatera:")
+hero.name = str(input("Podaj imię bohatera:"))
 book_choice = book_instance.book_pick()
 hero.book = book_choice
 ancestry_choice = book_instance.ancestry_pick(book_choice)
 hero.ancestry = ancestry_choice
 hero = ancestry_instance.attribute_picker(hero)
-
-"""Sprawdzenie tego jakiego pochodzenia jest postać i na tej
- podstawie wybranie dodatkowych upgrejdów oraz backstory"""
 
 match ancestry_choice:
     case "Człowiek":
@@ -71,6 +69,7 @@ match profession_choice:
     case 3:
         hero = mechanic_instance.add_profession(hero, True)
         hero = mechanic_instance.language_compare_add(hero, "verbal")
+
 
 pdf_creator_instance.pdf_creator(hero)
 

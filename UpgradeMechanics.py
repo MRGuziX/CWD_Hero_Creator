@@ -166,6 +166,14 @@ class UpgradeMechanics:
                     df = pd.DataFrame(data, columns=['value', 'result'])
                     profession_name = random.randint(0, 19)
                     hero.professions.append(df.iloc[profession_name, 1])
+
+                    match profession_name:
+                        case 4 | 5:
+                            hero.professions.append(df.iloc[4, 1])
+                        case 7 | 8:
+                            hero.professions.append(df.iloc[6, 1])
+                        case 14 | 15:
+                            hero.professions.append(df.iloc[12, 1])
                 case 6:
                     data = pd.read_excel('dataBase/professions.xlsx', "Religijne")
                     df = pd.DataFrame(data, columns=['value', 'result'])
