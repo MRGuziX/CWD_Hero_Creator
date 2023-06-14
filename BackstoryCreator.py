@@ -26,7 +26,7 @@ def human_backstory_picker(hero, database_name):
             hero.languages_spoken.append("Wspólny")
             hero.languages_written.append("Wspólny")
         case 19:
-            hero.copper_coins += dice_roller(2, 6)
+            hero.copper_coins += str(dice_roller(2, 6))
 
 
 def human_age_picker(hero, database_name):
@@ -79,17 +79,17 @@ def human_religion_picker(hero, database_name):
 
     match dice_roller(3, 6):
         case 3:
-            hero.quirks = (df.iloc[0, 1])
+            hero.religion = (df.iloc[0, 1])
         case 4:
-            hero.quirks = (df.iloc[1, 1])
+            hero.religion = (df.iloc[1, 1])
         case 5 | 6:
-            hero.quirks = (df.iloc[2, 1])
+            hero.religion = (df.iloc[2, 1])
         case 7 | 8 | 9 | 10:
-            hero.quirks = (df.iloc[3, 1])
+            hero.religion = (df.iloc[3, 1])
         case 11 | 12 | 13 | 14 | 15:
-            hero.quirks = (df.iloc[4, 1])
+            hero.religion = (df.iloc[4, 1])
         case _:
-            hero.quirks = (df.iloc[5, 1])
+            hero.religion = (df.iloc[5, 1])
 
 
 def human_body_picker(hero, database_name):
@@ -153,7 +153,7 @@ def automaton_backstory_picker(hero, database_name):
             hero.corruption += dice_roller(1, 3)
         case 1:
             hero.insanity += dice_roller(1, 6)
-            # dodaj profesje
+            mechanic_instance.add_profession(hero, True)
         case 12:
             mechanic_instance.add_language(hero, "verbal", None, True)
         case 13:

@@ -2,11 +2,13 @@ from AllAncestries import AllAncestries
 from AllBooks import AllBooks
 from BackstoryCreator import BackstoryCreator
 from HeroCreator import *
+from ItemCreator import Items
 from PDFCreator import PDFCreator
 
 from UpgradeMechanics import UpgradeMechanics
 
 hero = Characters()
+item = Items()
 book_instance = AllBooks()
 ancestry_instance = AllAncestries()
 mechanic_instance = UpgradeMechanics()
@@ -71,7 +73,7 @@ match profession_choice:
         hero = mechanic_instance.language_compare_add(hero, "verbal")
 
 
-pdf_creator_instance.pdf_creator(hero)
+pdf_creator_instance.pdf_creator(hero, item)
 
 # """Po backstory wybieramy sobie profesje czy 2 profesje czy jedna profesja i język.
 # musimy pokazać graczowi jakie języki już zna. Zwrócić listę języków"""
