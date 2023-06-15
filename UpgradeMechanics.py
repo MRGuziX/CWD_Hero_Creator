@@ -1,3 +1,5 @@
+import random
+
 import pandas as pd
 
 from DiceRoller import dice_roller
@@ -47,31 +49,6 @@ class UpgradeMechanics:
     @staticmethod
     def add_spell(hero):
         pass
-
-    @staticmethod
-    def add_profession(hero, single_profession):
-        if single_profession is True:
-
-            data = pd.read_excel('dataBase\professions.xlsx',"Rodzaje Profesji")
-            df = pd.DataFrame(data, columns=['attribute', 'value'])
-            profession_type = dice_roller(1, 6)
-            hero.professions.append(random_profession)
-        else:
-            print("Teraz możesz wybrać dwie profesje, lub profesje i możliwość mówienia nowym językiem lub umiejętność "
-                  "czytania i pisania w języku którym już umiesz mówić.\n")
-            print("Czy chcesz wybrać dodatkowy język zamiast profesji?\n"
-                  "1.Tak\n"
-                  "2.Nie\n")
-            profession_choice = input()
-
-            if profession_choice == "1":
-                print("To języki które Twoja postać posiada:")
-                print("Mówione:")
-                print(hero.languages_spoken)
-                print("Czytane i Pisane:")
-                print(hero.languages_written)
-                print("Chcesz dodać nowy jezyk mówiony, czy nauczyć się czytać i pisać w już posiadanym?")
-
 
     @staticmethod
     def add_language(hero, type_of_language, language, user_choice):
@@ -133,3 +110,100 @@ class UpgradeMechanics:
             else:
                 hero.languages_written.append(language)
         return hero
+
+    @staticmethod
+    def language_compare_add(hero, type_of_language_to_add):
+        all_language_list = ["Wspólny", "Mroczna mowa", "Krasnoludzki", "Elficki", "Wysoki archaik", "Trolli",
+                             "Sekretny język(        )", "Martwy język(        )"]
+        print("To języki które Twoja postać posiada:")
+        print("Mówione:")
+        print(hero.languages_spoken)
+        print("Czytane i Pisane:")
+        print(hero.languages_written)
+        print("Tych języków możesz się nauczyć, co wybierasz?")
+
+        if type_of_language_to_add == "verbal":
+            available_languages = list(set(all_language_list) - set(hero.languages_spoken))
+            print(available_languages)
+            language_choice = int(input())
+            hero.languages_spoken.append(available_languages[language_choice])
+
+        else:
+            available_languages = list(set(hero.languages_spoken) - set(hero.languages_written))
+            print(available_languages)
+            language_choice = int(input())
+            hero.languages_written.append(available_languages[language_choice])
+        return hero
+
+    @staticmethod
+    def add_profession(hero, user_profession_choice):
+        if user_profession_choice is True:
+            profession_type = dice_roller(1, 6)
+
+            match profession_type:
+                case 1:
+                    data = pd.read_excel('dataBase/professions.xlsx', "Naukowe")
+                    df = pd.DataFrame(data, columns=['value', 'result'])
+                    profession_name = random.randint(0, 19)
+                    hero.professions.append(df.iloc[profession_name, 1])
+                case 2:
+                    data = pd.read_excel('dataBase/professions.xlsx', "Pospolite")
+                    df = pd.DataFrame(data, columns=['value', 'result'])
+                    profession_name = random.randint(0, 19)
+                    hero.professions.append(df.iloc[profession_name, 1])
+                case 3:
+                    data = pd.read_excel('dataBase/professions.xlsx', "Przestępcze")
+                    df = pd.DataFrame(data, columns=['value', 'result'])
+                    profession_name = random.randint(0, 19)
+                    hero.professions.append(df.iloc[profession_name, 1])
+                case 4:
+                    data = pd.read_excel('dataBase/professions.xlsx', "Wojenne")
+                    df = pd.DataFrame(data, columns=['value', 'result'])
+                    profession_name = random.randint(0, 19)
+                    hero.professions.append(df.iloc[profession_name, 1])
+                case 5:
+                    data = pd.read_excel("dataBase/professions.xlsx", "Koczownicze")
+                    df = pd.DataFrame(data, columns=['value', 'result'])
+                    profession_name = random.randint(0, 19)
+                    hero.professions.append(df.iloc[profession_name, 1])
+
+                    match profession_name:
+                        case 4 | 5:
+                            hero.professions.append(df.iloc[4, 1])
+                        case 7 | 8:
+                            hero.professions.append(df.iloc[6, 1])
+                        case 14 | 15:
+                            hero.professions.append(df.iloc[12, 1])
+                case 6:
+                    data = pd.read_excel('dataBase/professions.xlsx', "Religijne")
+                    df = pd.DataFrame(data, columns=['value', 'result'])
+                    profession_name = random.randint(0, 19)
+                    mechanic_instance = UpgradeMechanics()
+
+                    match profession_name:
+                        case 0 | 1:
+                            hero.professions.append(df.iloc[0, 1])
+                            mechanic_instance.language_compare_add(hero, "written")
+                        case 2 | 3:
+                            hero.professions.append(df.iloc[1, 1])
+                            mechanic_instance.language_compare_add(hero, "written")
+                        case 4 | 5:
+                            hero.professions.append(df.iloc[2, 1])
+                        case 6 | 7:
+                            hero.professions.append(df.iloc[3, 1])
+                        case 8 | 9:
+                            hero.professions.append(df.iloc[4, 1])
+                            mechanic_instance.language_compare_add(hero, "written")
+                        case 10 | 11:
+                            hero.professions.append(df.iloc[5, 1])
+                            mechanic_instance.language_compare_add(hero, "written")
+                        case 12 | 13:
+                            hero.professions.append(df.iloc[6, 1])
+                        case 14 | 15:
+                            hero.professions.append(df.iloc[7, 1])
+                        case 16 | 17:
+                            hero.professions.append(df.iloc[8, 1])
+                        case 18 | 19:
+                            hero.professions.append(df.iloc[9, 1])
+
+            return hero

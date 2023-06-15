@@ -21,9 +21,11 @@ class Characters:
         self.insanity = None
         self.corruption = None
         self.damage = None
+        self.character_size = None
         self.languages_spoken = []
         self.languages_written = []
-        self.character_size = None
+        self.professions = []
+        self.race_talents = []
 
         self.backstory = None
         self.age = None
@@ -31,10 +33,13 @@ class Characters:
         self.body = None
         self.appearance = None
         self.quirks = None
+        self.religion = None
         self.changeling = None
 
         self.equipment = None
+        self.oddity = None
         self.gold_coins = None
         self.silver_coins = None
         self.copper_coins = None
         self.pieces_coins = None
+        self.wealth = None
