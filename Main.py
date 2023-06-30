@@ -72,11 +72,5 @@ match profession_choice:
         hero = mechanic_instance.add_profession(hero, True)
         hero = mechanic_instance.language_compare_add(hero, "verbal")
 
-
+hero = mechanic_instance.add_wealth(hero)
 pdf_creator_instance.pdf_creator(hero, item)
-
-# """Po backstory wybieramy sobie profesje czy 2 profesje czy jedna profesja i język.
-# musimy pokazać graczowi jakie języki już zna. Zwrócić listę języków"""
-
-# dodanie do wyborów z backstory modyfikacji equ i statów i języków
-#

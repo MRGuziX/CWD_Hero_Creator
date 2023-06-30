@@ -143,67 +143,93 @@ class UpgradeMechanics:
             match profession_type:
                 case 1:
                     data = pd.read_excel('dataBase/professions.xlsx', "Naukowe")
-                    df = pd.DataFrame(data, columns=['value', 'result'])
+
                     profession_name = random.randint(0, 19)
-                    hero.professions.append(df.iloc[profession_name, 1])
+                    hero.professions.append(data.iloc[profession_name, 1])
                 case 2:
                     data = pd.read_excel('dataBase/professions.xlsx', "Pospolite")
-                    df = pd.DataFrame(data, columns=['value', 'result'])
+
                     profession_name = random.randint(0, 19)
-                    hero.professions.append(df.iloc[profession_name, 1])
+                    hero.professions.append(data.iloc[profession_name, 1])
                 case 3:
                     data = pd.read_excel('dataBase/professions.xlsx', "Przestępcze")
-                    df = pd.DataFrame(data, columns=['value', 'result'])
+
                     profession_name = random.randint(0, 19)
-                    hero.professions.append(df.iloc[profession_name, 1])
+                    hero.professions.append(data.iloc[profession_name, 1])
                 case 4:
                     data = pd.read_excel('dataBase/professions.xlsx', "Wojenne")
-                    df = pd.DataFrame(data, columns=['value', 'result'])
+
                     profession_name = random.randint(0, 19)
-                    hero.professions.append(df.iloc[profession_name, 1])
+                    hero.professions.append(data.iloc[profession_name, 1])
                 case 5:
                     data = pd.read_excel("dataBase/professions.xlsx", "Koczownicze")
-                    df = pd.DataFrame(data, columns=['value', 'result'])
+
                     profession_name = random.randint(0, 19)
-                    hero.professions.append(df.iloc[profession_name, 1])
+                    hero.professions.append(data.iloc[profession_name, 1])
 
                     match profession_name:
                         case 4 | 5:
-                            hero.professions.append(df.iloc[4, 1])
+                            hero.professions.append(data.iloc[4, 1])
                         case 7 | 8:
-                            hero.professions.append(df.iloc[6, 1])
+                            hero.professions.append(data.iloc[6, 1])
                         case 14 | 15:
-                            hero.professions.append(df.iloc[12, 1])
+                            hero.professions.append(data.iloc[12, 1])
                 case 6:
                     data = pd.read_excel('dataBase/professions.xlsx', "Religijne")
-                    df = pd.DataFrame(data, columns=['value', 'result'])
                     profession_name = random.randint(0, 19)
                     mechanic_instance = UpgradeMechanics()
 
                     match profession_name:
                         case 0 | 1:
-                            hero.professions.append(df.iloc[0, 1])
+                            hero.professions.append(data.iloc[0, 1])
                             mechanic_instance.language_compare_add(hero, "written")
                         case 2 | 3:
-                            hero.professions.append(df.iloc[1, 1])
+                            hero.professions.append(data.iloc[1, 1])
                             mechanic_instance.language_compare_add(hero, "written")
                         case 4 | 5:
-                            hero.professions.append(df.iloc[2, 1])
+                            hero.professions.append(data.iloc[2, 1])
                         case 6 | 7:
-                            hero.professions.append(df.iloc[3, 1])
+                            hero.professions.append(data.iloc[3, 1])
                         case 8 | 9:
-                            hero.professions.append(df.iloc[4, 1])
+                            hero.professions.append(data.iloc[4, 1])
                             mechanic_instance.language_compare_add(hero, "written")
                         case 10 | 11:
-                            hero.professions.append(df.iloc[5, 1])
+                            hero.professions.append(data.iloc[5, 1])
                             mechanic_instance.language_compare_add(hero, "written")
                         case 12 | 13:
-                            hero.professions.append(df.iloc[6, 1])
+                            hero.professions.append(data.iloc[6, 1])
                         case 14 | 15:
-                            hero.professions.append(df.iloc[7, 1])
+                            hero.professions.append(data.iloc[7, 1])
                         case 16 | 17:
-                            hero.professions.append(df.iloc[8, 1])
+                            hero.professions.append(data.iloc[8, 1])
                         case 18 | 19:
-                            hero.professions.append(df.iloc[9, 1])
+                            hero.professions.append(data.iloc[9, 1])
 
             return hero
+
+    @staticmethod
+    def add_wealth(hero):
+        data = pd.read_excel('dataBase/utilities.xlsx', sheet_name="Zamożność")
+
+        life_standard = random.randint(0, 19)
+
+        match life_standard:
+            case 3 | 4:
+                hero.wealth = data.iloc[0, 1]  # [Numer wiersza,numer kolumny]
+                hero.equipment = data.iloc[0, 2]
+            case 5 | 6 | 7 | 8:
+                hero.wealth = data.iloc[1, 1]
+                hero.equipment = data.iloc[1, 2]
+            case 9 | 10 | 11 | 12 | 13:
+                hero.wealth = data.iloc[2, 1]
+                hero.equipment = data.iloc[3, 2]
+            case 14 | 15 | 16:
+                hero.wealth = data.iloc[3, 1]
+                hero.equipment = data.iloc[4, 2]
+            case 17:
+                hero.wealth = data.iloc[4, 1]
+                hero.equipment = data.iloc[5, 2]
+            case 18:
+                hero.wealth = data.iloc[5, 1]
+                hero.equipment = data.iloc[6, 2]
+        return hero
