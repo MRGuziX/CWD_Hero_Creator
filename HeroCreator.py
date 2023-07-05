@@ -38,8 +38,31 @@ class Characters:
 
         self.equipment = None
         self.oddity = None
-        self.gold_coins = None
-        self.silver_coins = None
-        self.copper_coins = None
-        self.pieces_coins = None
+        self.gold_coins = 0
+        self.silver_coins = 0
+        self.copper_coins = 0
+        self.pieces_coins = 0
         self.wealth = None
+
+        #tablica wielowymiarowa Items ktora przyjmuje mniejsze tablice jak weapons czy shields
+        self.items = []
+
+        self.weapons = []
+        self.armors = []
+        self.shields = []
+
+        self.items.append(self.weapons)
+        self.items.append(self.armors)
+        self.items.append(self.shields)
+
+        # może warto uzyć touple?
+    def getting_weapons(self, item):
+        self.items[0].append(item)
+
+    def getting_armors(self, item):
+        self.items[1].append(item)
+
+    def getting_shields(self, item):
+        self.items[2].append(item)
+
+

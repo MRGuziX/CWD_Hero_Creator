@@ -1,8 +1,10 @@
 import random
-
 import pandas as pd
 
 from DiceRoller import dice_roller
+from ItemCreator import Items
+
+item_instance = Items()
 
 
 class UpgradeMechanics:
@@ -165,7 +167,6 @@ class UpgradeMechanics:
                     data = pd.read_excel("dataBase/professions.xlsx", "Koczownicze")
 
                     profession_name = random.randint(0, 19)
-                    hero.professions.append(data.iloc[profession_name, 1])
 
                     match profession_name:
                         case 4 | 5:
@@ -174,6 +175,9 @@ class UpgradeMechanics:
                             hero.professions.append(data.iloc[6, 1])
                         case 14 | 15:
                             hero.professions.append(data.iloc[12, 1])
+                        case _:
+                            hero.professions.append(data.iloc[profession_name, 1])
+
                 case 6:
                     data = pd.read_excel('dataBase/professions.xlsx', "Religijne")
                     profession_name = random.randint(0, 19)
@@ -210,26 +214,74 @@ class UpgradeMechanics:
     @staticmethod
     def add_wealth(hero):
         data = pd.read_excel('dataBase/utilities.xlsx', sheet_name="Zamożność")
-
-        life_standard = random.randint(0, 19)
+        life_standard = dice_roller(3, 6)
+        random_item_picker = random.randint(0, 1)
 
         match life_standard:
             case 3 | 4:
-                hero.wealth = data.iloc[0, 1]  # [Numer wiersza,numer kolumny]
+                hero.wealth = data.iloc[0, 1]
                 hero.equipment = data.iloc[0, 2]
+                hero.pieces_coins += dice_roller(1, 6)
+                if random_item_picker == 1:
+                    hero.getting_weapons(item_instance.add_item("Pałka"))
+                else:
+                    hero.getting_weapons(item_instance.add_item("Proca"))
             case 5 | 6 | 7 | 8:
                 hero.wealth = data.iloc[1, 1]
                 hero.equipment = data.iloc[1, 2]
+                hero.pieces_coins += dice_roller(2, 6)
+                hero.getting_weapons(item_instance.add_item("Pałka"))
             case 9 | 10 | 11 | 12 | 13:
                 hero.wealth = data.iloc[2, 1]
                 hero.equipment = data.iloc[3, 2]
+                hero.copper_coins += dice_roller(1, 6)
+                hero.getting_weapons(item_instance.add_item("Pałka"))
             case 14 | 15 | 16:
                 hero.wealth = data.iloc[3, 1]
                 hero.equipment = data.iloc[4, 2]
+                hero.copper_coins += dice_roller(2, 6)
+                hero.getting_weapons(item_instance.add_item("Pałka"))
             case 17:
                 hero.wealth = data.iloc[4, 1]
                 hero.equipment = data.iloc[5, 2]
+                hero.silver_coins += dice_roller(1, 6)
+                hero.getting_weapons(item_instance.add_item("Pałka"))
             case 18:
                 hero.wealth = data.iloc[5, 1]
                 hero.equipment = data.iloc[6, 2]
+                hero.silver_coins += dice_roller(2, 6)
+                hero.getting_weapons(item_instance.add_item("Pałka"))
+        return hero
+
+    @staticmethod
+    def add_oddity(hero):
+
+        oddity_table_roller = dice_roller(1, 6)
+        oddity_type = random.randint(0, 19)
+
+        match oddity_table_roller:
+            case 1:
+                data = pd.read_excel('dataBase/utilities.xlsx', "Kurioza A")
+
+                hero.oddity = data.iloc[oddity_type, 1]
+            case 2:
+                data = pd.read_excel('dataBase/utilities.xlsx', "Kurioza B")
+
+                hero.oddity = data.iloc[oddity_type, 1]
+            case 3:
+                data = pd.read_excel('dataBase/utilities.xlsx', "Kurioza C")
+
+                hero.oddity = data.iloc[oddity_type, 1]
+            case 4:
+                data = pd.read_excel('dataBase/utilities.xlsx', "Kurioza D")
+
+                hero.oddity = data.iloc[oddity_type, 1]
+            case 5:
+                data = pd.read_excel('dataBase/utilities.xlsx', "Kurioza E")
+
+                hero.oddity = data.iloc[oddity_type, 1]
+            case 6:
+                data = pd.read_excel('dataBase/utilities.xlsx', "Kurioza F")
+
+                hero.oddity = data.iloc[oddity_type, 1]
         return hero

@@ -10,7 +10,7 @@ mechanic_instance = UpgradeMechanics()
 def human_backstory_picker(hero, database_name):
     data = pd.read_excel(f'dataBase/{database_name}.xlsx', 'Przeszłość')
     dice_roll = random.randint(0, 19)
-    hero.backstory = (data.iloc[dice_roll, 0])
+    hero.backstory = (data.iloc[dice_roll, 1])
 
     match dice_roll:
         case 0:
@@ -25,7 +25,7 @@ def human_backstory_picker(hero, database_name):
             hero.languages_spoken.append("Wspólny")
             hero.languages_written.append("Wspólny")
         case 19:
-            hero.copper_coins += str(dice_roller(2, 6))
+            hero.copper_coins += dice_roller(2, 6)
 
 
 def human_age_picker(hero, database_name):
@@ -51,23 +51,23 @@ def human_character_picker(hero, database_name):
 
     match dice_roller(3, 6):
         case 3:
-            hero.character = (data.iloc[0, 0])
+            hero.character = (data.iloc[0, 1])
         case 4:
-            hero.character = (data.iloc[1, 0])
+            hero.character = (data.iloc[1, 1])
         case 5 | 6:
-            hero.character = (data.iloc[2, 0])
+            hero.character = (data.iloc[2, 1])
         case 7 | 8:
-            hero.character = (data.iloc[3, 0])
+            hero.character = (data.iloc[3, 1])
         case 9 | 10 | 11 | 12:
-            hero.character = (data.iloc[4, 0])
+            hero.character = (data.iloc[4, 1])
         case 13 | 14:
-            hero.character = (data.iloc[5, 0])
+            hero.character = (data.iloc[5, 1])
         case 15 | 16:
-            hero.character = (data.iloc[6, 0])
+            hero.character = (data.iloc[6, 1])
         case 17:
-            hero.character = (data.iloc[7, 0])
+            hero.character = (data.iloc[7, 1])
         case _:
-            hero.character = (data.iloc[8, 0])
+            hero.character = (data.iloc[8, 1])
 
 
 def human_religion_picker(hero, database_name):

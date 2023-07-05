@@ -9,6 +9,7 @@ from UpgradeMechanics import UpgradeMechanics
 
 hero = Characters()
 item = Items()
+
 book_instance = AllBooks()
 ancestry_instance = AllAncestries()
 mechanic_instance = UpgradeMechanics()
@@ -73,4 +74,6 @@ match profession_choice:
         hero = mechanic_instance.language_compare_add(hero, "verbal")
 
 hero = mechanic_instance.add_wealth(hero)
-pdf_creator_instance.pdf_creator(hero, item)
+hero = mechanic_instance.add_oddity(hero)
+pdf_creator_instance.hero_pdf_creator(hero)
+pdf_creator_instance.item_pdf_creator(hero)
