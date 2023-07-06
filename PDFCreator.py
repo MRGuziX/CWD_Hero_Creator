@@ -53,32 +53,69 @@ class PDFCreator:
 
     @staticmethod
     def item_pdf_creator(hero):
-        #tablice wielowymiarowe
-        #writer.update_page_form_field_values(writer.pages[0], {"pancerz": hero.items[1][0]})#hero otwiera plecak o nazwie items i patrzy w pierwszą przegrodę gdzie przetrzymywane są armory, a potem wubiera pierwsza armor
-        # writer.update_page_form_field_values(writer.pages[0], {"pancerz_obrona": hero.armor_value})
-        # writer.update_page_form_field_values(writer.pages[0], {"pancerz_wlasciwosci": hero.armor_feature})
+        # tablice wielowymiarowe hero otwiera plecak o nazwie items i patrzy w pierwszą przegrodę gdzie
+        # przetrzymywane są armory, a potem wubiera pierwsza armor
 
-        writer.update_page_form_field_values(writer.pages[0], {"bron1": hero.items[0][0].weapon_melee})
-        writer.update_page_form_field_values(writer.pages[0], {"bron1_chwyt": hero.items[0][0].weapon_melee_grip})
-        writer.update_page_form_field_values(writer.pages[0], {"bron1_obrazenia": hero.items[0][0].weapon_melee_damage})
-        writer.update_page_form_field_values(writer.pages[0], {"bron1_wlasciwosci": hero.items[0][0].weapon_melee_feature})
-        #
-        # writer.update_page_form_field_values(writer.pages[0], {"tarcza": hero.shield})
-        # writer.update_page_form_field_values(writer.pages[0], {"tarcza_chwyt": hero.shield_grip})
-        # writer.update_page_form_field_values(writer.pages[0], {"tarcza_obrazenia": hero.shield_damage})
-        # writer.update_page_form_field_values(writer.pages[0], {"tarcza_wlasciwosci": hero.shield_feature})
-        #
-        # writer.update_page_form_field_values(writer.pages[0], {"bron2": hero.weapon_melee2})
-        # writer.update_page_form_field_values(writer.pages[0], {"bron_2_chwyt": hero.weapon_melee2_grip})
-        # writer.update_page_form_field_values(writer.pages[0], {"bron_2_obrazenia": hero.weapon_melee2_damage})
-        # writer.update_page_form_field_values(writer.pages[0], {"bron_2_wlasciwosci": hero.weapon_melee2_feature})
-        #
-        # writer.update_page_form_field_values(writer.pages[0], {"bron_dystansowa": hero.weapon_ranged})
-        # writer.update_page_form_field_values(writer.pages[0], {"bron_dystansowa_chwyt": hero.weapon_ranged_grip})
-        # writer.update_page_form_field_values(writer.pages[0],
-        #                                      {"bron_dystansowa_obrazenia": hero.weapon_ranged_damage})
-        # writer.update_page_form_field_values(writer.pages[0],
-        #                                      {"bron_dystansowa_wlasciwosci": hero.weapon_ranged_feature})
+        def assign_first_weapon():
+            writer.update_page_form_field_values(writer.pages[0], {"bron1": hero.items[0][0].weapon_name})
+            writer.update_page_form_field_values(writer.pages[0], {"bron1_chwyt": hero.items[0][0].weapon_grip})
+            writer.update_page_form_field_values(writer.pages[0],
+                                                 {"bron1_obrazenia": hero.items[0][0].weapon_damage})
+            writer.update_page_form_field_values(writer.pages[0],
+                                                 {"bron1_wlasciwosci": hero.items[0][0].weapon_feature})
+
+        def assign_second_weapon():
+            writer.update_page_form_field_values(writer.pages[0], {"bron2": hero.items[0][1].weapon_name})
+            writer.update_page_form_field_values(writer.pages[0], {"bron2_Chwyt": hero.items[0][1].weapon_grip})
+            writer.update_page_form_field_values(writer.pages[0],
+                                                 {"bron2_Obrazenia": hero.items[0][1].weapon_damage})
+            writer.update_page_form_field_values(writer.pages[0],
+                                                 {"bron2_wlasciwosci": hero.items[0][1].weapon_feature})
+
+        def assign_ranged_weapon():
+            writer.update_page_form_field_values(writer.pages[0],
+                                                 {"bron_dystansowa": hero.items[1][0].weapon_name})
+            writer.update_page_form_field_values(writer.pages[0],
+                                                 {"bron_dystansowa_chwyt": hero.items[1][
+                                                     0].weapon_grip})
+            writer.update_page_form_field_values(writer.pages[0],
+                                                 {"bron_dystansowa_obrazenia": hero.items[1][
+                                                     0].weapon_damage})
+            writer.update_page_form_field_values(writer.pages[0],
+                                                 {"bron_dystansowa_wlasciwosci": hero.items[1][
+                                                     0].weapon_feature})
+
+        def assign_armor():
+            writer.update_page_form_field_values(writer.pages[0], {"pancerz": hero.items[2][0].armor})
+            writer.update_page_form_field_values(writer.pages[0], {"pancerz_obrona": hero.items[2][0].armor_value})
+            writer.update_page_form_field_values(writer.pages[0],
+                                                 {"pancerz_wlasciwosci": hero.items[2][0].armor_feature})
+
+        def assign_shield():
+            writer.update_page_form_field_values(writer.pages[0], {"tarcza": hero.items[3][0].shield})
+            writer.update_page_form_field_values(writer.pages[0], {"tarcza_obrazenia": hero.items[3][0].shield_damage})
+            writer.update_page_form_field_values(writer.pages[0],
+                                                 {"tarcza_wlasciwosci": hero.items[3][0].shield_feature})
+
+        number_of_melee_weapons = len(hero.items[0])
+        number_of_ranged_weapons = len(hero.items[1])
+        number_of_armors = len(hero.items[2])
+        number_of_shields = len(hero.items[3])
+
+        if number_of_melee_weapons == 1:
+            assign_first_weapon()
+        elif number_of_melee_weapons == 2:
+            assign_first_weapon()
+            assign_second_weapon()
+
+        if number_of_ranged_weapons == 1:
+            assign_ranged_weapon()
+
+        if number_of_shields == 1:
+            assign_shield()
+
+        if number_of_armors == 1:
+            assign_armor()
 
         # write "output" to PyPDF2-output.pdf
         with open("output/filled-out.pdf", "wb") as output_stream:

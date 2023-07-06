@@ -165,7 +165,6 @@ class UpgradeMechanics:
                     hero.professions.append(data.iloc[profession_name, 1])
                 case 5:
                     data = pd.read_excel("dataBase/professions.xlsx", "Koczownicze")
-
                     profession_name = random.randint(0, 19)
 
                     match profession_name:
@@ -223,34 +222,46 @@ class UpgradeMechanics:
                 hero.equipment = data.iloc[0, 2]
                 hero.pieces_coins += dice_roller(1, 6)
                 if random_item_picker == 1:
-                    hero.getting_weapons(item_instance.add_item("Pałka"))
+                    hero.getting_melee_weapons(item_instance.add_item("Pałka"))
                 else:
-                    hero.getting_weapons(item_instance.add_item("Proca"))
+                    hero.getting_ranged_weapons(item_instance.add_item("Proca"))
             case 5 | 6 | 7 | 8:
                 hero.wealth = data.iloc[1, 1]
                 hero.equipment = data.iloc[1, 2]
                 hero.pieces_coins += dice_roller(2, 6)
-                hero.getting_weapons(item_instance.add_item("Pałka"))
+                hero.getting_melee_weapons(item_instance.add_item("Kostur"))
+                if random_item_picker == 1:
+                    hero.getting_melee_weapons(item_instance.add_item("Pałka"))
+                else:
+                    hero.getting_ranged_weapons(item_instance.add_item("Proca"))
             case 9 | 10 | 11 | 12 | 13:
                 hero.wealth = data.iloc[2, 1]
                 hero.equipment = data.iloc[3, 2]
                 hero.copper_coins += dice_roller(1, 6)
-                hero.getting_weapons(item_instance.add_item("Pałka"))
+                hero.getting_melee_weapons(item_instance.add_item("Kostur"))
+                hero.getting_melee_weapons(item_instance.add_item("Pałka"))
+                hero.getting_ranged_weapons(item_instance.add_item("Proca"))
             case 14 | 15 | 16:
                 hero.wealth = data.iloc[3, 1]
                 hero.equipment = data.iloc[4, 2]
                 hero.copper_coins += dice_roller(2, 6)
-                hero.getting_weapons(item_instance.add_item("Pałka"))
+                hero.getting_melee_weapons(item_instance.add_item("Kostur"))
+                hero.getting_melee_weapons(item_instance.add_item("Pałka"))
+                hero.getting_ranged_weapons(item_instance.add_item("Proca"))
             case 17:
                 hero.wealth = data.iloc[4, 1]
                 hero.equipment = data.iloc[5, 2]
                 hero.silver_coins += dice_roller(1, 6)
-                hero.getting_weapons(item_instance.add_item("Pałka"))
+                hero.getting_melee_weapons(item_instance.add_item("Kostur"))
+                hero.getting_melee_weapons(item_instance.add_item("Pałka"))
+                hero.getting_ranged_weapons(item_instance.add_item("Proca"))
             case 18:
                 hero.wealth = data.iloc[5, 1]
                 hero.equipment = data.iloc[6, 2]
                 hero.silver_coins += dice_roller(2, 6)
-                hero.getting_weapons(item_instance.add_item("Pałka"))
+                hero.getting_melee_weapons(item_instance.add_item("Kostur"))
+                hero.getting_melee_weapons(item_instance.add_item("Pałka"))
+                hero.getting_ranged_weapons(item_instance.add_item("Proca"))
         return hero
 
     @staticmethod

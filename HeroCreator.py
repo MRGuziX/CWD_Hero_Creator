@@ -47,22 +47,27 @@ class Characters:
         #tablica wielowymiarowa Items ktora przyjmuje mniejsze tablice jak weapons czy shields
         self.items = []
 
-        self.weapons = []
+        self.melee_weapons = []
+        self.ranged_weapons = []
         self.armors = []
         self.shields = []
 
-        self.items.append(self.weapons)
+        self.items.append(self.melee_weapons)
+        self.items.append(self.ranged_weapons)
         self.items.append(self.armors)
         self.items.append(self.shields)
 
         # może warto uzyć touple?
-    def getting_weapons(self, item):
+    def getting_melee_weapons(self, item):
         self.items[0].append(item)
 
-    def getting_armors(self, item):
+    def getting_ranged_weapons(self, item):
         self.items[1].append(item)
 
-    def getting_shields(self, item):
+    def getting_armors(self, item):
         self.items[2].append(item)
+
+    def getting_shields(self, item):
+        self.items[3].append(item)
 
 
