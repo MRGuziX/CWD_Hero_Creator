@@ -1,8 +1,10 @@
 import random
-
 import pandas as pd
 
 from DiceRoller import dice_roller
+from ItemCreator import Items
+
+item_instance = Items()
 
 
 class UpgradeMechanics:
@@ -143,67 +145,154 @@ class UpgradeMechanics:
             match profession_type:
                 case 1:
                     data = pd.read_excel('dataBase/professions.xlsx', "Naukowe")
-                    df = pd.DataFrame(data, columns=['value', 'result'])
+
                     profession_name = random.randint(0, 19)
-                    hero.professions.append(df.iloc[profession_name, 1])
+                    hero.professions.append(data.iloc[profession_name, 1])
                 case 2:
                     data = pd.read_excel('dataBase/professions.xlsx', "Pospolite")
-                    df = pd.DataFrame(data, columns=['value', 'result'])
+
                     profession_name = random.randint(0, 19)
-                    hero.professions.append(df.iloc[profession_name, 1])
+                    hero.professions.append(data.iloc[profession_name, 1])
                 case 3:
                     data = pd.read_excel('dataBase/professions.xlsx', "Przestępcze")
-                    df = pd.DataFrame(data, columns=['value', 'result'])
+
                     profession_name = random.randint(0, 19)
-                    hero.professions.append(df.iloc[profession_name, 1])
+                    hero.professions.append(data.iloc[profession_name, 1])
                 case 4:
                     data = pd.read_excel('dataBase/professions.xlsx', "Wojenne")
-                    df = pd.DataFrame(data, columns=['value', 'result'])
+
                     profession_name = random.randint(0, 19)
-                    hero.professions.append(df.iloc[profession_name, 1])
+                    hero.professions.append(data.iloc[profession_name, 1])
                 case 5:
                     data = pd.read_excel("dataBase/professions.xlsx", "Koczownicze")
-                    df = pd.DataFrame(data, columns=['value', 'result'])
                     profession_name = random.randint(0, 19)
-                    hero.professions.append(df.iloc[profession_name, 1])
 
                     match profession_name:
                         case 4 | 5:
-                            hero.professions.append(df.iloc[4, 1])
+                            hero.professions.append(data.iloc[4, 1])
                         case 7 | 8:
-                            hero.professions.append(df.iloc[6, 1])
+                            hero.professions.append(data.iloc[6, 1])
                         case 14 | 15:
-                            hero.professions.append(df.iloc[12, 1])
+                            hero.professions.append(data.iloc[12, 1])
+                        case _:
+                            hero.professions.append(data.iloc[profession_name, 1])
+
                 case 6:
                     data = pd.read_excel('dataBase/professions.xlsx', "Religijne")
-                    df = pd.DataFrame(data, columns=['value', 'result'])
                     profession_name = random.randint(0, 19)
                     mechanic_instance = UpgradeMechanics()
 
                     match profession_name:
                         case 0 | 1:
-                            hero.professions.append(df.iloc[0, 1])
+                            hero.professions.append(data.iloc[0, 1])
                             mechanic_instance.language_compare_add(hero, "written")
                         case 2 | 3:
-                            hero.professions.append(df.iloc[1, 1])
+                            hero.professions.append(data.iloc[1, 1])
                             mechanic_instance.language_compare_add(hero, "written")
                         case 4 | 5:
-                            hero.professions.append(df.iloc[2, 1])
+                            hero.professions.append(data.iloc[2, 1])
                         case 6 | 7:
-                            hero.professions.append(df.iloc[3, 1])
+                            hero.professions.append(data.iloc[3, 1])
                         case 8 | 9:
-                            hero.professions.append(df.iloc[4, 1])
+                            hero.professions.append(data.iloc[4, 1])
                             mechanic_instance.language_compare_add(hero, "written")
                         case 10 | 11:
-                            hero.professions.append(df.iloc[5, 1])
+                            hero.professions.append(data.iloc[5, 1])
                             mechanic_instance.language_compare_add(hero, "written")
                         case 12 | 13:
-                            hero.professions.append(df.iloc[6, 1])
+                            hero.professions.append(data.iloc[6, 1])
                         case 14 | 15:
-                            hero.professions.append(df.iloc[7, 1])
+                            hero.professions.append(data.iloc[7, 1])
                         case 16 | 17:
-                            hero.professions.append(df.iloc[8, 1])
+                            hero.professions.append(data.iloc[8, 1])
                         case 18 | 19:
-                            hero.professions.append(df.iloc[9, 1])
+                            hero.professions.append(data.iloc[9, 1])
 
             return hero
+
+    @staticmethod
+    def add_wealth(hero):
+        data = pd.read_excel('dataBase/utilities.xlsx', sheet_name="Zamożność")
+        life_standard = dice_roller(3, 6)
+        random_item_picker = random.randint(0, 1)
+
+        match life_standard:
+            case 3 | 4:
+                hero.wealth = data.iloc[0, 1]
+                hero.equipment = data.iloc[0, 2]
+                hero.pieces_coins += dice_roller(1, 6)
+                if random_item_picker == 1:
+                    hero.getting_melee_weapons(item_instance.add_item("Pałka"))
+                else:
+                    hero.getting_ranged_weapons(item_instance.add_item("Proca"))
+            case 5 | 6 | 7 | 8:
+                hero.wealth = data.iloc[1, 1]
+                hero.equipment = data.iloc[1, 2]
+                hero.pieces_coins += dice_roller(2, 6)
+                hero.getting_melee_weapons(item_instance.add_item("Kostur"))
+                if random_item_picker == 1:
+                    hero.getting_melee_weapons(item_instance.add_item("Pałka"))
+                else:
+                    hero.getting_ranged_weapons(item_instance.add_item("Proca"))
+            case 9 | 10 | 11 | 12 | 13:
+                hero.wealth = data.iloc[2, 1]
+                hero.equipment = data.iloc[3, 2]
+                hero.copper_coins += dice_roller(1, 6)
+                hero.getting_melee_weapons(item_instance.add_item("Kostur"))
+                hero.getting_melee_weapons(item_instance.add_item("Pałka"))
+                hero.getting_ranged_weapons(item_instance.add_item("Proca"))
+            case 14 | 15 | 16:
+                hero.wealth = data.iloc[3, 1]
+                hero.equipment = data.iloc[4, 2]
+                hero.copper_coins += dice_roller(2, 6)
+                hero.getting_melee_weapons(item_instance.add_item("Kostur"))
+                hero.getting_melee_weapons(item_instance.add_item("Pałka"))
+                hero.getting_ranged_weapons(item_instance.add_item("Proca"))
+            case 17:
+                hero.wealth = data.iloc[4, 1]
+                hero.equipment = data.iloc[5, 2]
+                hero.silver_coins += dice_roller(1, 6)
+                hero.getting_melee_weapons(item_instance.add_item("Kostur"))
+                hero.getting_melee_weapons(item_instance.add_item("Pałka"))
+                hero.getting_ranged_weapons(item_instance.add_item("Proca"))
+            case 18:
+                hero.wealth = data.iloc[5, 1]
+                hero.equipment = data.iloc[6, 2]
+                hero.silver_coins += dice_roller(2, 6)
+                hero.getting_melee_weapons(item_instance.add_item("Kostur"))
+                hero.getting_melee_weapons(item_instance.add_item("Pałka"))
+                hero.getting_ranged_weapons(item_instance.add_item("Proca"))
+        return hero
+
+    @staticmethod
+    def add_oddity(hero):
+
+        oddity_table_roller = dice_roller(1, 6)
+        oddity_type = random.randint(0, 19)
+
+        match oddity_table_roller:
+            case 1:
+                data = pd.read_excel('dataBase/utilities.xlsx', "Kurioza A")
+
+                hero.oddity = data.iloc[oddity_type, 1]
+            case 2:
+                data = pd.read_excel('dataBase/utilities.xlsx', "Kurioza B")
+
+                hero.oddity = data.iloc[oddity_type, 1]
+            case 3:
+                data = pd.read_excel('dataBase/utilities.xlsx', "Kurioza C")
+
+                hero.oddity = data.iloc[oddity_type, 1]
+            case 4:
+                data = pd.read_excel('dataBase/utilities.xlsx', "Kurioza D")
+
+                hero.oddity = data.iloc[oddity_type, 1]
+            case 5:
+                data = pd.read_excel('dataBase/utilities.xlsx', "Kurioza E")
+
+                hero.oddity = data.iloc[oddity_type, 1]
+            case 6:
+                data = pd.read_excel('dataBase/utilities.xlsx', "Kurioza F")
+
+                hero.oddity = data.iloc[oddity_type, 1]
+        return hero
